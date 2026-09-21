@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -16,7 +16,7 @@
       --dorado: #c9962e;
       --crema: #fbf5e9;
       --fondo: #f4ecdd;
-      --sombra: rgba(71, 53, 25, .16 );
+      --sombra: rgba(71, 53, 25, .16);
     }
 
     * {
@@ -138,8 +138,8 @@
     .card {
       position: relative;
       width: min(100%, 900px);
-      margin: 60px auto 0;
-      padding: 65px 70px;
+      margin: 40px auto 0;
+      padding: 55px 60px;
       border: 1px solid rgba(33, 70, 56, .14);
       border-radius: 18px;
       background: rgba(255, 251, 241, .68);
@@ -176,10 +176,10 @@
       margin: 0;
       color: #193b30;
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(58px, 8vw, 105px);
+      font-size: clamp(48px, 7vw, 95px);
       font-weight: 500;
-      line-height: .86;
-      letter-spacing: -.05em;
+      line-height: .92;
+      letter-spacing: -.03em;
     }
 
     h1 em {
@@ -188,11 +188,13 @@
       font-weight: 600;
     }
 
+    /* Animación del Sobre */
     .envelope-area {
       position: relative;
-      width: min(100%, 370px);
-      height: 205px;
-      margin: 45px auto 28px;
+      width: min(100%, 360px);
+      height: 220px;
+      margin: 35px auto 25px;
+      cursor: pointer;
     }
 
     .envelope-shadow {
@@ -211,11 +213,11 @@
       inset: 0 3%;
       filter: drop-shadow(0 18px 18px rgba(94, 59, 17, .17));
       transform: rotate(-1.5deg);
-      transition: .3s ease;
+      transition: transform .3s ease;
     }
 
-    .envelope:hover {
-      transform: rotate(0deg) translateY(-4px);
+    .envelope-area:hover .envelope {
+      transform: rotate(0deg) translateY(-6px);
     }
 
     .envelope-back,
@@ -223,7 +225,7 @@
     .envelope-flap {
       position: absolute;
       inset: 0;
-      border-radius: 7px;
+      border-radius: 8px;
     }
 
     .envelope-back {
@@ -232,20 +234,27 @@
 
     .letter {
       position: absolute;
-      top: 8%;
+      top: 10%;
       right: 8%;
       left: 8%;
-      height: 90%;
-      padding-top: 23px;
+      height: 85%;
+      padding-top: 18px;
+      border-radius: 6px;
       background: #fffaf0;
       box-shadow: 0 8px 16px rgba(64, 45, 18, .1);
       color: var(--verde);
+      transition: transform .5s ease-in-out;
+    }
+
+    .envelope-area.open .letter {
+      transform: translateY(-70px);
+      z-index: 3;
     }
 
     .letter small {
       display: block;
       color: var(--dorado);
-      font-size: 8px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -253,22 +262,29 @@
 
     .letter strong {
       display: block;
-      margin-top: 6px;
+      margin-top: 4px;
       color: #18382e;
       font-family: "Cormorant Garamond", serif;
-      font-size: 39px;
+      font-size: 34px;
       font-weight: 600;
     }
 
     .letter div {
-      margin-top: 3px;
-      font-size: 19px;
+      margin-top: 2px;
+      font-size: 22px;
     }
 
     .envelope-flap {
-      z-index: 2;
-      clip-path: polygon(0 0, 100% 0, 50% 66%);
+      z-index: 4;
+      clip-path: polygon(0 0, 100% 0, 50% 64%);
       background: linear-gradient(145deg, #f9e4a1, #d5a33d);
+      transform-origin: top;
+      transition: transform .4s ease, z-index .2s ease;
+    }
+
+    .envelope-area.open .envelope-flap {
+      transform: rotateX(180deg);
+      z-index: 1;
     }
 
     .envelope-front {
@@ -279,7 +295,7 @@
 
     .seal {
       position: absolute;
-      z-index: 4;
+      z-index: 5;
       top: 50%;
       left: 50%;
       display: grid;
@@ -292,22 +308,29 @@
       box-shadow: 0 4px 10px rgba(75, 49, 13, .25);
       font-size: 17px;
       transform: translate(-50%, -50%);
+      transition: opacity .3s ease;
+    }
+
+    .envelope-area.open .seal {
+      opacity: 0;
+      pointer-events: none;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       gap: 12px;
+      margin-top: 10px;
       border: 0;
       border-radius: 999px;
-      padding: 16px 21px 16px 25px;
+      padding: 16px 24px;
       color: #fffaf0;
       background: var(--verde-claro);
       box-shadow: 0 13px 25px rgba(46, 100, 70, .22);
       cursor: pointer;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
-      transition: .2s ease;
+      transition: all .2s ease;
     }
 
     .button:hover {
@@ -331,17 +354,17 @@
       gap: 6px;
       margin: 18px 0 0;
       color: rgba(33, 70, 56, .5);
-      font-size: 10px;
+      font-size: 11px;
     }
 
     .revealed {
       display: grid;
       grid-template-columns: minmax(300px, .95fr) minmax(0, 1.05fr);
       align-items: center;
-      gap: clamp(35px, 7vw, 95px);
+      gap: clamp(35px, 6vw, 85px);
       width: min(100%, 1060px);
-      margin: 30px auto 0;
-      animation: revelar 1s ease both;
+      margin: 20px auto 0;
+      animation: revelar .8s ease both;
     }
 
     .photo-area {
@@ -363,12 +386,12 @@
     .photo-card {
       position: relative;
       z-index: 1;
-      width: min(100%, 460px);
+      width: min(100%, 440px);
       margin: auto;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid rgba(201, 150, 46, .4);
       border-radius: 18px;
-      background: rgba(255, 252, 244, .85);
+      background: rgba(255, 252, 244, .9);
       box-shadow: 0 30px 45px rgba(75, 56, 25, .19);
       transform: rotate(-1.5deg);
       animation: flotar 5s ease-in-out infinite alternate;
@@ -378,7 +401,7 @@
       display: block;
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: 11px;
+      border-radius: 10px;
       object-fit: cover;
     }
 
@@ -388,9 +411,9 @@
       align-items: center;
       gap: 10px;
       margin-top: 14px;
-      color: rgba(33, 70, 56, .65);
+      color: rgba(33, 70, 56, .75);
       font-family: "Cormorant Garamond", serif;
-      font-size: 20px;
+      font-size: 21px;
       font-style: italic;
       text-align: center;
     }
@@ -403,21 +426,22 @@
 
     .note {
       position: relative;
-      padding: 48px 50px;
+      padding: 45px 48px;
       border: 1px solid rgba(33, 70, 56, .13);
-      border-radius: 14px;
-      background: rgba(255, 252, 245, .72);
+      border-radius: 16px;
+      background: rgba(255, 252, 245, .82);
       box-shadow: 0 30px 55px rgba(78, 62, 31, .11);
       backdrop-filter: blur(12px);
     }
 
     .note h1 {
-      font-size: clamp(68px, 8vw, 105px);
+      font-size: clamp(55px, 7vw, 90px);
     }
 
     .note h1 span {
+      display: inline-block;
       font-family: sans-serif;
-      font-size: .42em;
+      font-size: .45em;
       animation: latido 2.4s ease-in-out infinite;
     }
 
@@ -425,7 +449,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 27px 0 22px;
+      margin: 22px 0;
       color: var(--dorado);
     }
 
@@ -437,35 +461,39 @@
 
     .message {
       margin: 0;
-      color: rgba(33, 70, 56, .85);
+      color: rgba(33, 70, 56, .88);
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(22px, 2.2vw, 29px);
+      font-size: clamp(21px, 2.1vw, 27px);
       font-weight: 500;
-      line-height: 1.25;
+      line-height: 1.35;
     }
 
     .signature {
-      margin-top: 27px;
-      color: rgba(33, 70, 56, .58);
+      margin-top: 25px;
+      color: rgba(33, 70, 56, .65);
       font-family: "Cormorant Garamond", serif;
-      font-size: 19px;
+      font-size: 20px;
       font-style: italic;
     }
 
     .signature strong {
       color: var(--verde-claro);
+      font-weight: 600;
     }
 
     .replay {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 7px;
-      margin: 30px auto 0;
+      margin-top: 25px;
       border: 0;
-      color: rgba(33, 70, 56, .55);
+      padding: 0;
+      color: rgba(33, 70, 56, .6);
       background: transparent;
       cursor: pointer;
-      font-size: 11px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color .2s ease;
     }
 
     .replay:hover {
@@ -475,9 +503,9 @@
     .footer {
       position: relative;
       z-index: 2;
-      padding: 18px;
-      color: rgba(33, 70, 56, .45);
-      font-size: 9px;
+      padding: 22px 18px;
+      color: rgba(33, 70, 56, .5);
+      font-size: 10px;
       letter-spacing: .18em;
       text-align: center;
       text-transform: uppercase;
@@ -519,12 +547,12 @@
     }
 
     @keyframes aparecer {
-      from { opacity: 0; transform: translateY(25px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes revelar {
-      from { opacity: 0; transform: translateY(25px) scale(.98); }
+      from { opacity: 0; transform: translateY(20px) scale(.98); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
@@ -540,7 +568,7 @@
 
     @keyframes latido {
       0%, 100% { transform: scale(1); }
-      12% { transform: scale(1.15); }
+      12% { transform: scale(1.18); }
       23% { transform: scale(1); }
     }
 
@@ -573,39 +601,39 @@
       }
 
       .main {
-        padding-top: 20px;
+        padding-top: 15px;
       }
 
       .card {
-        margin-top: 34px;
-        padding: 40px 18px 32px;
+        margin-top: 25px;
+        padding: 35px 20px 30px;
       }
 
       h1 {
-        font-size: clamp(53px, 15vw, 75px);
+        font-size: clamp(42px, 13vw, 68px);
       }
 
       .envelope-area {
-        margin-top: 35px;
+        margin-top: 30px;
       }
 
       .revealed {
         grid-template-columns: 1fr;
-        gap: 18px;
-        margin-top: 22px;
+        gap: 25px;
+        margin-top: 15px;
       }
 
       .photo-card {
-        width: min(100%, 380px);
+        width: min(100%, 360px);
       }
 
       .note {
-        padding: 35px 22px 30px;
+        padding: 32px 22px 28px;
         text-align: center;
       }
 
       .note h1 {
-        font-size: clamp(65px, 18vw, 90px);
+        font-size: clamp(52px, 15vw, 75px);
       }
 
       .line {
@@ -613,7 +641,7 @@
       }
 
       .message {
-        font-size: 23px;
+        font-size: 22px;
       }
     }
 
@@ -666,10 +694,9 @@
 
       <section id="opening" class="card opening">
         <p class="small-title">Para abrir con cariño</p>
-        <h1>Hay algo <em>especial</em>  
-para ti...</h1>
+        <h1>Hay algo <em>especial</em><br>para ti...</h1>
 
-        <div class="envelope-area">
+        <div class="envelope-area" id="envelopeArea" onclick="abrirCarta()">
           <div class="envelope-shadow"></div>
 
           <div class="envelope">
@@ -700,7 +727,6 @@ para ti...</h1>
           <div class="photo-halo"></div>
 
           <div class="photo-card">
-            <!-- Puedes cambiar esta URL por otra imagen pública -->
             <img
               src="https://files.manuscdn.com/search-media/310519663383446652/iPcrBcbrE7OnDWeCOUO603/7uCEqoab9A79nyisN5GXLT.jpg"
               alt="Oso de peluche entregando rosas amarillas"
@@ -733,7 +759,7 @@ para ti...</h1>
             Con cariño, <strong>alguien que pensó en ti</strong>
           </div>
 
-          <button class="replay" onclick="verDeNuevo( )">
+          <button class="replay" onclick="verDeNuevo()">
             ↻ Ver la carta de nuevo
           </button>
         </article>
@@ -747,18 +773,25 @@ para ti...</h1>
 
   <script>
     function abrirCarta() {
+      const envelopeArea = document.getElementById("envelopeArea");
       const opening = document.getElementById("opening");
       const revealed = document.getElementById("revealed");
 
-      opening.style.display = "none";
-      revealed.hidden = false;
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      envelopeArea.classList.add("open");
+
+      setTimeout(() => {
+        opening.style.display = "none";
+        revealed.hidden = false;
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 700);
     }
 
     function verDeNuevo() {
+      const envelopeArea = document.getElementById("envelopeArea");
       const opening = document.getElementById("opening");
       const revealed = document.getElementById("revealed");
 
+      envelopeArea.classList.remove("open");
       revealed.hidden = true;
       opening.style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
