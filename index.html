@@ -3,156 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Una sorpresa de Flores Amarillas para Jimena 💛</title>
-  
-  <!-- Vista previa al compartir por WhatsApp -->
-  <meta property="og:title" content="¡Jimena, tienes una carta sorpresa! 🌻">
-  <meta property="og:description" content="Toca el sobre para abrir tu regalo de flores amarillas.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=800">
+  <title>¡Feliz 21! Un detalle de Flores Amarillas y Peluche 💛🧸</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: linear-gradient(135deg, #fff9e6 0%, #ffecb3 100%);
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #fffde7 0%, #ffe082 100%);
+      font-family: 'Segoe UI', Roboto, sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 20px;
-      overflow-x: hidden;
+      overflow: hidden;
+      position: relative;
     }
+
+    /* Animación continua de lluvia de flores y peluches */
+    .falling-item {
+      position: absolute;
+      top: -50px;
+      font-size: 26px;
+      user-select: none;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
+
+    /* Tarjeta del sobre */
     .card-container {
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
       border-radius: 24px;
-      box-shadow: 0 20px 40px rgba(212, 160, 23, 0.2);
-      max-width: 480px;
+      box-shadow: 0 15px 35px rgba(212, 160, 23, 0.3);
+      max-width: 450px;
       width: 100%;
       text-align: center;
       padding: 35px 25px;
-      border: 2px solid #ffe082;
-      position: relative;
+      border: 2px solid #ffca28;
+      z-index: 10;
     }
-    
-    /* Animación del sobre */
+
     .envelope-icon {
-      font-size: 90px;
+      font-size: 85px;
       cursor: pointer;
       display: inline-block;
-      transition: transform 0.4s ease, filter 0.3s ease;
-      animation: pulse 2s infinite;
+      transition: transform 0.3s ease;
+      animation: bounce 2s infinite;
     }
+
     .envelope-icon:hover {
-      transform: scale(1.15) rotate(-3deg);
-      filter: drop-shadow(0 10px 15px rgba(255, 179, 0, 0.4));
+      transform: scale(1.15) rotate(-5deg);
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
       color: #b78103;
-      font-size: 26px;
+      font-size: 24px;
       margin-top: 15px;
-      font-weight: 700;
     }
+
     p.subtitle {
       color: #7a6211;
-      font-size: 16px;
-      margin-top: 10px;
+      font-size: 15px;
+      margin-top: 8px;
     }
-    .open-btn {
-      margin-top: 25px;
+
+    .btn-open {
+      margin-top: 20px;
       background: linear-gradient(45deg, #ffb300, #ffa000);
       color: white;
       border: none;
-      padding: 14px 32px;
-      font-size: 17px;
+      padding: 12px 28px;
+      font-size: 16px;
       font-weight: bold;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(255, 160, 0, 0.4);
-      transition: all 0.3s ease;
-    }
-    .open-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(255, 160, 0, 0.5);
+      box-shadow: 0 5px 15px rgba(255, 160, 0, 0.4);
+      transition: transform 0.2s ease;
     }
 
-    /* Vista de la Sorpresa */
+    .btn-open:hover {
+      transform: scale(1.05);
+    }
+
+    /* Sorpresa desplegada */
     #surprise-content {
       display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    #surprise-content.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
+      animation: fadeIn 1s forwards;
     }
 
-    .flower-image {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 18px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      margin: 20px 0;
-      border: 3px solid #fff;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .special-message {
-      font-size: 18px;
+    .teddy-bouquet-box {
+      font-size: 75px;
+      margin: 15px 0;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    .neutral-message {
+      font-size: 16px;
       line-height: 1.6;
-      color: #5d4037;
+      color: #4e342e;
       background: #fffde7;
-      padding: 20px;
+      padding: 18px;
       border-radius: 16px;
-      border-left: 5px solid #ffca28;
-      margin-bottom: 20px;
+      border-left: 4px solid #ffc107;
+      margin: 15px 0;
+      text-align: left;
     }
 
     audio {
       width: 100%;
-      margin-top: 10px;
-      border-radius: 30px;
+      margin-top: 15px;
+      border-radius: 20px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Contenedor para la lluvia animada -->
+  <div id="rain-container"></div>
+
   <div class="card-container">
-    <!-- Pantalla Inicial con el Sobre -->
+    <!-- Pantalla del Sobre -->
     <div id="envelope-screen">
-      <div class="envelope-icon" onclick="revealSurprise()">💌</div>
-      <h1>¡Para Jimena! ✨</h1>
-      <p class="subtitle">Tienes un regalo especial esperándote dentro...</p>
-      <button class="open-btn" onclick="revealSurprise()">Abrir Carta 🌻</button>
+      <div class="envelope-icon" onclick="openSurprise()">💌</div>
+      <h1>¡Un detalle para este 21! ✨</h1>
+      <p class="subtitle">Toca el sobre para descubrir tu sorpresa...</p>
+      <button class="btn-open" onclick="openSurprise()">Abrir Sobre 💛</button>
     </div>
 
-    <!-- Pantalla con la Sorpresa Abierta -->
+    <!-- Pantalla de la Sorpresa -->
     <div id="surprise-content">
-      <h1 style="color: #d48806;">🌻 ¡Flores Amarillas para ti, Jimena! 💛</h1>
-      
-      <!-- Fotografía Realista de Flores Amarillas -->
-      <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=800" 
-           alt="Flores Amarillas para Jimena" 
-           class="flower-image">
+      <h1>🌻 ¡Feliz 21 de Flores Amarillas! 🧸</h1>
 
-      <div class="special-message">
-        <p><strong>Querida Jimena,</strong></p>
-        <p>Estas flores amarillas son para iluminar tu día y recordarte lo especial e importante que eres. ¡Que siempre sonrías y brilles con esa luz única! 🌼✨</p>
+      <div class="teddy-bouquet-box">
+        🧸💐🌻
       </div>
 
-      <p style="color: #8c6d1f; font-size: 14px; margin-bottom: 8px;">🎵 Escucha tu canción especial:</p>
-      <!-- Reproductor de audio -->
+      <div class="neutral-message">
+        <p><strong>¡Un detalle especial para ti!</strong></p>
+        <p>Porque cada 21 es la oportunidad perfecta para regalar luz, cariño y momentos bonitos. Que este pequeño oso de peluche y estas flores amarillas iluminen tu día y te saquen una gran sonrisa. ✨💛</p>
+      </div>
+
+      <p style="color: #8c6d1f; font-size: 14px;">🎵 Canción especial de fondo:</p>
       <audio id="bg-music" controls loop>
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         Tu navegador no soporta el reproductor de audio.
@@ -161,17 +178,29 @@
   </div>
 
   <script>
-    function revealSurprise() {
-      const envelopeScreen = document.getElementById('envelope-screen');
-      const surpriseContent = document.getElementById('surprise-content');
+    // Generador de lluvia de Flores Amarillas y Peluches
+    const rainContainer = document.getElementById('rain-container');
+    const items = ['🌻', '🌼', '🧸', '💛', '✨'];
+
+    for (let i = 0; i < 30; i++) {
+      const item = document.createElement('div');
+      item.classList.add('falling-item');
+      item.innerText = items[Math.floor(Math.random() * items.length)];
+      item.style.left = Math.random() * 100 + 'vw';
+      item.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      item.style.animationDelay = Math.random() * 5 + 's';
+      item.style.fontSize = (Math.random() * 15 + 20) + 'px';
+      rainContainer.appendChild(item);
+    }
+
+    function openSurprise() {
+      document.getElementById('envelope-screen').style.display = 'none';
+      const surprise = document.getElementById('surprise-content');
+      surprise.style.display = 'block';
+
       const audio = document.getElementById('bg-music');
-
-      envelopeScreen.style.display = 'none';
-      surpriseContent.classList.add('show');
-
-      // Intenta reproducir la música al abrir la sorpresa
       audio.play().catch(() => {
-        console.log("El navegador requiere interacción previa para reproducir audio.");
+        console.log("El navegador requiere interacción previa.");
       });
     }
   </script>
