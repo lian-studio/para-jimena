@@ -3,450 +3,1162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Jimena 🌻💛</title>
+
+<title>Para Jimena 💛</title>
+
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-  body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #fff9c4, #ffe082, #ffd54f, #ffb300);
-    background-size: 400% 400%;
-    animation: fondoAnimado 12s ease infinite;
-    font-family: 'Georgia', 'Segoe UI', serif;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 15px;
-    position: relative;
-  }
+html,body{
+    width:100%;
+    min-height:100%;
+}
 
-  @keyframes fondoAnimado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+body{
+    overflow:hidden;
+    font-family:Arial, sans-serif;
+    background:
+        radial-gradient(circle at center, #fffde8 0%, #fff4b0 45%, #f6d66b 100%);
+    color:#654819;
+}
 
-  /* Lluvia de flores amarillas */
-  .lluvia {
-    position: fixed;
-    top: -50px;
-    font-size: 28px;
-    animation: caer linear infinite;
-    pointer-events: none;
-    z-index: 1;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-  }
+/* =========================
+   PANTALLA INICIAL
+========================= */
 
-  @keyframes caer {
-    0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-  }
+#inicio{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:25px;
 
-  /* Tarjeta principal */
-  .tarjeta {
-    position: relative;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    padding: 40px 30px;
-    max-width: 620px;
-    width: 100%;
-    box-shadow: 0 20px 60px rgba(255, 152, 0, 0.4), 0 0 0 4px rgba(255, 235, 59, 0.6);
-    text-align: center;
-    animation: entradaTarjeta 1.2s ease;
-    border: 3px solid #ffd54f;
-  }
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,.95), transparent 35%),
+        linear-gradient(135deg,#fffdf0,#fff0a3,#f5d467);
 
-  @keyframes entradaTarjeta {
-    0% { transform: scale(0.8) translateY(40px); opacity: 0; }
-    100% { transform: scale(1) translateY(0); opacity: 1; }
-  }
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
 
-  .titulo {
-    font-size: 2.2rem;
-    color: #f57f17;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 0 #fff59d;
-    animation: latido 2s ease-in-out infinite;
-  }
+#inicio.oculto{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
 
-  @keyframes latido {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-  }
+.inicio-contenido{
+    width:min(500px,95%);
+    padding:45px 28px;
+    border-radius:35px;
 
-  .frase {
-    font-size: 1.25rem;
-    line-height: 1.8;
-    color: #4e342e;
-    font-style: italic;
-    white-space: pre-line;
-    margin-bottom: 15px;
-  }
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-  .frase .destacado {
-    color: #f57f17;
-    font-weight: bold;
-    font-style: normal;
-  }
+    border:1px solid rgba(255,255,255,.7);
 
-  /* Girasoles decorativos */
-  .girasoles {
-    font-size: 2.5rem;
-    margin: 10px 0 20px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
+    box-shadow:
+        0 30px 80px rgba(130,90,15,.18);
 
-  .girasoles span {
-    display: inline-block;
-    animation: girar 3s ease-in-out infinite;
-    transform-origin: center;
-  }
+    animation:entrada 1.2s ease;
+}
 
-  .girasoles span:nth-child(2) { animation-delay: 0.4s; font-size: 3rem; }
-  .girasoles span:nth-child(3) { animation-delay: 0.8s; }
+.emoji-flor{
+    font-size:75px;
+    animation:flotar 3s ease-in-out infinite;
+}
 
-  @keyframes girar {
-    0%, 100% { transform: rotate(-12deg) scale(1); }
-    50% { transform: rotate(12deg) scale(1.15); }
-  }
+.subtitulo{
+    margin-top:15px;
+    font-size:13px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#a17a25;
+}
 
-  /* Botón sorpresa */
-  .boton-sorpresa {
-    background: linear-gradient(135deg, #ffd54f, #ffb300);
-    color: #5d4037;
-    border: none;
-    padding: 16px 40px;
-    font-size: 1.15rem;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.5);
-    transition: all 0.3s ease;
-    font-family: inherit;
-    margin-top: 10px;
-    animation: pulso 2s infinite;
-  }
+h1{
+    margin-top:12px;
+    font-family:Georgia,serif;
+    font-size:clamp(38px,10vw,65px);
+    line-height:.95;
+    font-weight:normal;
+}
 
-  .boton-sorpresa:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 14px 30px rgba(255, 152, 0, 0.7);
-  }
+h1 span{
+    color:#b17b15;
+    font-style:italic;
+}
 
-  .boton-sorpresa:active { transform: scale(0.97); }
+.descripcion{
+    margin:22px 0;
+    color:#806a42;
+    font-size:15px;
+}
 
-  @keyframes pulso {
-    0%, 100% { box-shadow: 0 8px 20px rgba(255, 152, 0, 0.5); }
-    50% { box-shadow: 0 8px 35px rgba(255, 193, 7, 0.9); }
-  }
+#abrir{
+    border:none;
+    cursor:pointer;
 
-  /* Sorpresa: peluche + flores */
-  .sorpresa {
-    display: none;
-    margin-top: 25px;
-    animation: aparecer 1s ease forwards;
-  }
+    padding:16px 30px;
+    border-radius:50px;
 
-  .sorpresa.activa { display: block; }
+    color:white;
+    font-size:16px;
+    font-weight:bold;
 
-  @keyframes aparecer {
-    0% { opacity: 0; transform: translateY(30px) scale(0.7); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-  }
+    background:linear-gradient(135deg,#e8b735,#b77b0d);
 
-  .peluche {
-    font-size: 5.5rem;
-    display: inline-block;
-    animation: balanceo 1.8s ease-in-out infinite;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
-  }
+    box-shadow:
+        0 12px 30px rgba(164,110,12,.28);
 
-  @keyframes balanceo {
-    0%, 100% { transform: rotate(-8deg) translateY(0); }
-    50% { transform: rotate(8deg) translateY(-12px); }
-  }
+    transition:.3s;
+}
 
-  .ramo-sorpresa {
-    font-size: 2.8rem;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+#abrir:hover{
+    transform:translateY(-3px);
+}
 
-  .ramo-sorpresa span {
-    animation: flotar 2s ease-in-out infinite;
-    display: inline-block;
-  }
+#abrir:active{
+    transform:scale(.96);
+}
 
-  .ramo-sorpresa span:nth-child(2) { animation-delay: 0.3s; }
-  .ramo-sorpresa span:nth-child(3) { animation-delay: 0.6s; }
-  .ramo-sorpresa span:nth-child(4) { animation-delay: 0.9s; }
-  .ramo-sorpresa span:nth-child(5) { animation-delay: 1.2s; }
+/* =========================
+   SORPRESA
+========================= */
 
-  @keyframes flotar {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-14px) rotate(10deg); }
-  }
+#sorpresa{
+    position:fixed;
+    inset:0;
 
-  .mensaje-sorpresa {
-    margin-top: 15px;
-    font-size: 1.15rem;
-    color: #e65100;
-    font-weight: bold;
-  }
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-  /* Corazones flotantes */
-  .corazon {
-    position: fixed;
-    font-size: 22px;
-    animation: subir 6s linear infinite;
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0.9;
-  }
+    text-align:center;
 
-  @keyframes subir {
-    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
-  }
+    opacity:0;
 
-  /* Botón de música */
-  .btn-musica {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #ffb300;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    transition:opacity 1.5s ease;
 
-  .btn-musica:hover { transform: scale(1.12) rotate(8deg); }
+    background:
+        radial-gradient(circle at 50% 20%,rgba(255,255,255,.95),transparent 30%),
+        radial-gradient(circle at 10% 80%,rgba(255,219,76,.4),transparent 35%),
+        radial-gradient(circle at 90% 60%,rgba(255,235,143,.5),transparent 35%),
+        linear-gradient(180deg,#fffde9,#fff0a3,#f4d36a);
+}
 
-  @media (max-width: 480px) {
-    .titulo { font-size: 1.7rem; }
-    .frase { font-size: 1.05rem; }
-    .tarjeta { padding: 30px 20px; }
-    .peluche { font-size: 4rem; }
-  }
+#sorpresa.visible{
+    opacity:1;
+}
+
+.contenido{
+    width:min(760px,94%);
+    z-index:10;
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* =========================
+   RAMO
+========================= */
+
+.ramo{
+    position:relative;
+
+    width:min(390px,85vw);
+
+    animation:
+        aparecerRamo 1.8s cubic-bezier(.2,.8,.2,1) forwards,
+        viento 5s ease-in-out 2s infinite;
+
+    filter:drop-shadow(0 20px 25px rgba(100,70,10,.2));
+}
+
+.flor{
+    position:absolute;
+
+    width:85px;
+    height:85px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,
+            #704600 0 14%,
+            #a36a0a 15% 22%,
+            transparent 23%
+        );
+
+    animation:florRespira 4s ease-in-out infinite;
+}
+
+.petalo{
+    position:absolute;
+
+    width:38px;
+    height:62px;
+
+    left:50%;
+    top:50%;
+
+    transform-origin:50% 100%;
+
+    border-radius:50% 50% 45% 45%;
+
+    background:
+        radial-gradient(circle at 35% 25%,
+            #fff9a4,
+            #ffd83d 55%,
+            #d99c0d
+        );
+
+    margin-left:-19px;
+    margin-top:-62px;
+}
+
+/* pétalos */
+.p1{transform:rotate(0deg)}
+.p2{transform:rotate(45deg)}
+.p3{transform:rotate(90deg)}
+.p4{transform:rotate(135deg)}
+.p5{transform:rotate(180deg)}
+.p6{transform:rotate(225deg)}
+.p7{transform:rotate(270deg)}
+.p8{transform:rotate(315deg)}
+
+.flor1{
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.flor2{
+    top:75px;
+    left:20%;
+    transform:scale(.75);
+}
+
+.flor3{
+    top:70px;
+    right:18%;
+    transform:scale(.8);
+}
+
+.flor4{
+    top:125px;
+    left:38%;
+    transform:scale(.68);
+}
+
+.flor5{
+    top:135px;
+    right:32%;
+    transform:scale(.65);
+}
+
+/* tallos */
+.tallos{
+    width:100%;
+    height:170px;
+    margin-top:-10px;
+    position:relative;
+}
+
+.tallo{
+    position:absolute;
+    bottom:0;
+    left:50%;
+
+    width:8px;
+    height:180px;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        90deg,
+        #315c29,
+        #79a94b,
+        #315c29
+    );
+
+    transform-origin:bottom;
+}
+
+.tallo:nth-child(1){
+    transform:rotate(-25deg);
+}
+
+.tallo:nth-child(2){
+    transform:rotate(-10deg);
+}
+
+.tallo:nth-child(3){
+    transform:rotate(10deg);
+}
+
+.tallo:nth-child(4){
+    transform:rotate(25deg);
+}
+
+/* hojas */
+
+.hoja{
+    position:absolute;
+
+    width:65px;
+    height:30px;
+
+    background:linear-gradient(
+        135deg,
+        #3f7634,
+        #86ad51
+    );
+
+    border-radius:100% 0 100% 0;
+}
+
+.hoja1{
+    bottom:50px;
+    left:25%;
+    transform:rotate(-25deg);
+}
+
+.hoja2{
+    bottom:70px;
+    right:22%;
+    transform:rotate(30deg);
+}
+
+.hoja3{
+    bottom:20px;
+    left:40%;
+    transform:rotate(160deg);
+}
+
+/* papel del ramo */
+
+.papel{
+    width:170px;
+    height:100px;
+
+    margin:-30px auto 0;
+
+    background:
+        linear-gradient(135deg,#fff4c7,#ecd994);
+
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        82% 100%,
+        50% 82%,
+        18% 100%
+    );
+
+    position:relative;
+    z-index:5;
+
+    box-shadow:0 10px 20px rgba(100,70,10,.12);
+}
+
+/* =========================
+   TEXTO
+========================= */
+
+.para{
+    margin-top:8px;
+
+    font-size:12px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+
+    color:#a37a20;
+
+    opacity:0;
+    animation:subir .9s ease 1.4s forwards;
+}
+
+.nombre{
+    margin-top:4px;
+
+    font-family:Georgia,serif;
+
+    font-size:clamp(50px,13vw,85px);
+
+    font-weight:normal;
+
+    color:#68491b;
+
+    opacity:0;
+
+    animation:subir .9s ease 1.6s forwards;
+}
+
+.nombre span{
+    font-size:.45em;
+}
+
+/* mensaje */
+
+.mensaje{
+    width:min(680px,100%);
+
+    margin-top:10px;
+
+    padding:22px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.62);
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    box-shadow:
+        0 18px 55px rgba(100,70,10,.13);
+
+    opacity:0;
+
+    animation:
+        subir 1s ease 2s forwards;
+}
+
+.mensaje p{
+    font-family:Georgia,serif;
+
+    font-size:clamp(19px,4.5vw,25px);
+
+    line-height:1.4;
+
+    color:#61491f;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.botones{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    margin-top:17px;
+
+    opacity:0;
+
+    animation:subir .8s ease 2.4s forwards;
+}
+
+.botones button{
+    border:1px solid rgba(255,255,255,.8);
+
+    padding:13px 18px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.65);
+
+    color:#63491d;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+
+    transition:.25s;
+}
+
+.botones button:hover{
+    transform:translateY(-2px);
+    background:white;
+}
+
+#estadoCompartir{
+    min-height:20px;
+
+    margin-top:7px;
+
+    font-size:12px;
+
+    color:#775b28;
+}
+
+/* =========================
+   PÉTALOS
+========================= */
+
+.petalo-caida{
+    position:absolute;
+
+    top:-50px;
+
+    width:12px;
+    height:20px;
+
+    background:linear-gradient(
+        135deg,
+        #fff59c,
+        #e7aa19
+    );
+
+    border-radius:100% 0 100% 0;
+
+    opacity:.7;
+
+    z-index:3;
+
+    animation:
+        caer linear forwards;
+}
+
+/* =========================
+   DESTELLOS
+========================= */
+
+.destello{
+    position:absolute;
+
+    color:#dcae31;
+
+    font-size:25px;
+
+    z-index:2;
+
+    animation:brillar 3s ease-in-out infinite;
+}
+
+.d1{
+    top:18%;
+    left:12%;
+}
+
+.d2{
+    top:24%;
+    right:13%;
+    animation-delay:1s;
+}
+
+.d3{
+    bottom:20%;
+    right:10%;
+    animation-delay:2s;
+}
+
+.d4{
+    bottom:25%;
+    left:12%;
+    animation-delay:.7s;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes entrada{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes flotar{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(2deg);
+    }
+}
+
+@keyframes aparecerRamo{
+    from{
+        opacity:0;
+        transform:translateY(100px) scale(.65);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes viento{
+    0%,100%{
+        transform:rotate(-1deg);
+    }
+
+    50%{
+        transform:rotate(1.5deg) translateX(5px);
+    }
+}
+
+@keyframes florRespira{
+    0%,100%{
+        filter:brightness(1);
+    }
+
+    50%{
+        filter:brightness(1.08);
+    }
+}
+
+@keyframes subir{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes caer{
+    from{
+        transform:
+            translateY(-50px)
+            rotate(0deg);
+    }
+
+    to{
+        transform:
+            translateY(110vh)
+            translateX(var(--movimiento))
+            rotate(650deg);
+    }
+}
+
+@keyframes brillar{
+    0%,100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.2);
+    }
+}
+
+/* =========================
+   CELULARES
+========================= */
+
+@media(max-width:600px){
+
+    .inicio-contenido{
+        padding:35px 20px;
+    }
+
+    .ramo{
+        width:340px;
+        max-width:90vw;
+    }
+
+    .mensaje{
+        padding:17px;
+    }
+
+    .mensaje p{
+        font-size:20px;
+    }
+
+    .botones button{
+        font-size:12px;
+    }
+}
+
+/* accesibilidad */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition:none!important;
+    }
+}
 </style>
 </head>
+
 <body>
 
-<!-- Botón para música -->
-<button class="btn-musica" id="btnMusica" title="Música romántica">🎵</button>
+<!-- =========================
+     PANTALLA INICIAL
+========================= -->
 
-<!-- Tarjeta principal -->
-<div class="tarjeta">
-  <div class="girasoles">
-    <span>🌻</span><span>🌻</span><span>🌻</span>
-  </div>
+<section id="inicio">
 
-  <h1 class="titulo">Para ti, Jimena 💛</h1>
+    <div class="inicio-contenido">
 
-  <p class="frase" id="frase">
-    <span class="destacado">Este ramito de flores amarillas es para ti, Jimena. 🌻💛</span>
-    Por si nadie te las dio o simplemente nadie se acordó, quise tener este pequeño detalle contigo.
-    Espero de corazón que te guste y que te saque una bonita sonrisa.
-  </p>
+        <div class="emoji-flor">🌻</div>
 
-  <div class="girasoles">
-    <span>🌼</span><span>🌻</span><span>🌼</span>
-  </div>
+        <div class="subtitulo">
+            Una pequeña sorpresa
+        </div>
 
-  <button class="boton-sorpresa" id="btnSorpresa">🎁 Toca aquí para tu sorpresa 🎁</button>
+        <h1>
+            Tengo una pequeña<br>
+            <span>sorpresa para ti...</span>
+        </h1>
 
-  <div class="sorpresa" id="sorpresa">
-    <div class="peluche">🧸</div>
-    <div class="ramo-sorpresa">
-      <span>🌻</span><span>💛</span><span>🌼</span><span>🌻</span><span>💛</span>
+        <p class="descripcion">
+            Ábrela cuando estés lista 💛
+        </p>
+
+        <button id="abrir">
+            Abrir sorpresa 💛
+        </button>
+
     </div>
-    <p class="mensaje-sorpresa">¡Un peluchito y flores amarillas para la persona más especial! 💛🌻</p>
-  </div>
-</div>
+
+</section>
+
+
+<!-- =========================
+     SORPRESA
+========================= -->
+
+<section id="sorpresa">
+
+    <!-- destellos -->
+
+    <div class="destello d1">✦</div>
+    <div class="destello d2">✧</div>
+    <div class="destello d3">✦</div>
+    <div class="destello d4">✧</div>
+
+
+    <!-- aquí aparecen pétalos -->
+    <div id="petalos"></div>
+
+
+    <div class="contenido">
+
+        <!-- RAMO -->
+
+        <div class="ramo">
+
+            <div class="flor flor1">
+
+                <div class="petalo p1"></div>
+                <div class="petalo p2"></div>
+                <div class="petalo p3"></div>
+                <div class="petalo p4"></div>
+                <div class="petalo p5"></div>
+                <div class="petalo p6"></div>
+                <div class="petalo p7"></div>
+                <div class="petalo p8"></div>
+
+            </div>
+
+
+            <div class="flor flor2">
+
+                <div class="petalo p1"></div>
+                <div class="petalo p2"></div>
+                <div class="petalo p3"></div>
+                <div class="petalo p4"></div>
+                <div class="petalo p5"></div>
+                <div class="petalo p6"></div>
+                <div class="petalo p7"></div>
+                <div class="petalo p8"></div>
+
+            </div>
+
+
+            <div class="flor flor3">
+
+                <div class="petalo p1"></div>
+                <div class="petalo p2"></div>
+                <div class="petalo p3"></div>
+                <div class="petalo p4"></div>
+                <div class="petalo p5"></div>
+                <div class="petalo p6"></div>
+                <div class="petalo p7"></div>
+                <div class="petalo p8"></div>
+
+            </div>
+
+
+            <div class="flor flor4">
+
+                <div class="petalo p1"></div>
+                <div class="petalo p2"></div>
+                <div class="petalo p3"></div>
+                <div class="petalo p4"></div>
+                <div class="petalo p5"></div>
+                <div class="petalo p6"></div>
+                <div class="petalo p7"></div>
+                <div class="petalo p8"></div>
+
+            </div>
+
+
+            <div class="flor flor5">
+
+                <div class="petalo p1"></div>
+                <div class="petalo p2"></div>
+                <div class="petalo p3"></div>
+                <div class="petalo p4"></div>
+                <div class="petalo p5"></div>
+                <div class="petalo p6"></div>
+                <div class="petalo p7"></div>
+                <div class="petalo p8"></div>
+
+            </div>
+
+
+            <!-- tallos -->
+
+            <div class="tallos">
+
+                <div class="tallo"></div>
+                <div class="tallo"></div>
+                <div class="tallo"></div>
+                <div class="tallo"></div>
+
+                <div class="hoja hoja1"></div>
+                <div class="hoja hoja2"></div>
+                <div class="hoja hoja3"></div>
+
+            </div>
+
+            <div class="papel"></div>
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="para">
+            Para ti
+        </div>
+
+        <div class="nombre">
+            Jimena <span>💛</span>
+        </div>
+
+
+        <div class="mensaje">
+
+            <p>
+                Este ramito de flores amarillas es para ti, Jimena. 🌻💛 Por si nadie te las dio o simplemente nadie se acordó, quise tener este pequeño detalle contigo. Espero de corazón que te guste y que te saque una bonita sonrisa.
+            </p>
+
+        </div>
+
+
+        <!-- BOTONES -->
+
+        <div class="botones">
+
+            <button id="musica">
+                🎵 Activar música
+            </button>
+
+            <button id="compartir">
+                🔗 Compartir sorpresa 💛
+            </button>
+
+        </div>
+
+        <div id="estadoCompartir"></div>
+
+    </div>
+
+
+    <!-- MÚSICA -->
+
+    <audio id="audio" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+</section>
+
 
 <script>
-/* ====== LLUVIA DE FLORES AMARILLAS ====== */
-const floresLluvia = ['🌻', '🌼', '💛', '🌻', '✨', '🌻'];
-function crearLluvia() {
-  const flor = document.createElement('div');
-  flor.className = 'lluvia';
-  flor.textContent = floresLluvia[Math.floor(Math.random() * floresLluvia.length)];
-  flor.style.left = Math.random() * 100 + 'vw';
-  flor.style.fontSize = (18 + Math.random() * 22) + 'px';
-  flor.style.animationDuration = (6 + Math.random() * 6) + 's';
-  flor.style.animationDelay = Math.random() * 3 + 's';
-  document.body.appendChild(flor);
-  setTimeout(() => flor.remove(), 14000);
-}
-setInterval(crearLluvia, 500);
 
-/* ====== CORAZONES FLOTANTES ====== */
-const corazones = ['💛', '💖', '🌻', '💛', '✨'];
-function crearCorazon() {
-  const c = document.createElement('div');
-  c.className = 'corazon';
-  c.textContent = corazones[Math.floor(Math.random() * corazones.length)];
-  c.style.left = Math.random() * 100 + 'vw';
-  c.style.animationDuration = (5 + Math.random() * 4) + 's';
-  c.style.fontSize = (16 + Math.random() * 18) + 'px';
-  document.body.appendChild(c);
-  setTimeout(() => c.remove(), 10000);
-}
-setInterval(crearCorazon, 900);
+/* =====================================
+   ELEMENTOS
+===================================== */
 
-/* ====== BOTÓN SORPRESA ====== */
-const btnSorpresa = document.getElementById('btnSorpresa');
-const sorpresa = document.getElementById('sorpresa');
+const inicio = document.getElementById("inicio");
+const abrir = document.getElementById("abrir");
 
-btnSorpresa.addEventListener('click', () => {
-  sorpresa.classList.add('activa');
-  btnSorpresa.textContent = '💛 ¡Sorpresa desbloqueada! 💛';
-  btnSorpresa.style.background = 'linear-gradient(135deg, #ffe082, #ffca28)';
+const sorpresa = document.getElementById("sorpresa");
 
-  // Explosión de flores al mostrar sorpresa
-  for (let i = 0; i < 25; i++) {
-    setTimeout(() => {
-      const f = document.createElement('div');
-      f.className = 'corazon';
-      f.textContent = ['🌻','🌼','💛','🧸','✨'][Math.floor(Math.random()*5)];
-      f.style.left = Math.random() * 100 + 'vw';
-      f.style.fontSize = (22 + Math.random() * 26) + 'px';
-      f.style.animationDuration = (3 + Math.random() * 3) + 's';
-      document.body.appendChild(f);
-      setTimeout(() => f.remove(), 6000);
-    }, i * 80);
-  }
+const audio = document.getElementById("audio");
+const musica = document.getElementById("musica");
 
-  // Mensaje de voz simulado (opcional)
-  if ('speechSynthesis' in window) {
-    const msg = new SpeechSynthesisUtterance('Espero que te guste, Jimena. Un abrazo con flores amarillas.');
-    msg.lang = 'es-ES';
-    msg.rate = 0.95;
-    msg.pitch = 1.1;
-    speechSynthesis.speak(msg);
-  }
+const compartir = document.getElementById("compartir");
+const estadoCompartir =
+    document.getElementById("estadoCompartir");
+
+const petalos =
+    document.getElementById("petalos");
+
+
+let reproduciendo = false;
+
+
+/* =====================================
+   ABRIR SORPRESA
+===================================== */
+
+abrir.addEventListener("click", async () => {
+
+    inicio.classList.add("oculto");
+
+    sorpresa.classList.add("visible");
+
+    crearPetalos();
+
+    /*
+       Intentamos iniciar la música.
+       Como el botón fue presionado por el usuario,
+       muchos navegadores permiten reproducirla.
+    */
+
+    try{
+
+        await audio.play();
+
+        reproduciendo = true;
+
+        musica.innerHTML =
+            "🔊 Pausar música";
+
+    }catch(error){
+
+        reproduciendo = false;
+
+        musica.innerHTML =
+            "🎵 Activar música";
+
+    }
+
 });
 
-/* ====== MÚSICA ROMÁNTICA (Web Audio API) ====== */
-let audioCtx = null;
-let musicaActiva = false;
-let intervaloMusica = null;
 
-const btnMusica = document.getElementById('btnMusica');
+/* =====================================
+   MÚSICA
+===================================== */
 
-// Melodía romántica en notas (frecuencias)
-const melodia = [
-  // Notas (frecuencia, duración)
-  [523.25, 0.4], [587.33, 0.4], [659.25, 0.4], [698.46, 0.6],
-  [659.25, 0.4], [587.33, 0.4], [523.25, 0.8],
-  [493.88, 0.4], [523.25, 0.4], [587.33, 0.4], [659.25, 0.6],
-  [587.33, 0.4], [523.25, 0.4], [493.88, 0.8],
-  [440.00, 0.4], [493.88, 0.4], [523.25, 0.4], [587.33, 0.6],
-  [523.25, 0.4], [493.88, 0.4], [440.00, 0.8],
-  [392.00, 0.4], [440.00, 0.4], [493.88, 0.4], [523.25, 0.8],
-  [493.88, 0.4], [440.00, 0.4], [392.00, 1.0]
-];
+musica.addEventListener("click", async () => {
 
-// Bajos suaves
-const bajos = [
-  [130.81, 1.6], [146.83, 1.6], [164.81, 1.6], [174.61, 1.6],
-  [130.81, 1.6], [146.83, 1.6], [164.81, 1.6], [174.61, 1.6],
-  [110.00, 1.6], [123.47, 1.6], [130.81, 1.6], [146.83, 1.6],
-  [98.00, 1.6], [110.00, 1.6], [123.47, 1.6], [130.81, 1.6]
-];
+    if(reproduciendo){
 
-function reproducirNota(freq, duracion, cuando, tipo = 'sine', vol = 0.15) {
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = tipo;
-  osc.frequency.value = freq;
+        audio.pause();
 
-  gain.gain.setValueAtTime(0, cuando);
-  gain.gain.linearRampToValueAtTime(vol, cuando + 0.05);
-  gain.gain.exponentialRampToValueAtTime(0.001, cuando + duracion);
+        reproduciendo = false;
 
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  osc.start(cuando);
-  osc.stop(cuando + duracion + 0.1);
-}
+        musica.innerHTML =
+            "🎵 Activar música";
 
-function tocarMelodia() {
-  if (!audioCtx) return;
-  let t = audioCtx.currentTime + 0.1;
+    }else{
 
-  // Melodía principal
-  melodia.forEach(([freq, dur]) => {
-    reproducirNota(freq, dur, t, 'sine', 0.12);
-    t += dur;
-  });
+        try{
 
-  // Bajos en paralelo
-  let tb = audioCtx.currentTime + 0.1;
-  bajos.forEach(([freq, dur]) => {
-    reproducirNota(freq, dur, tb, 'triangle', 0.08);
-    tb += dur;
-  });
+            await audio.play();
 
-  const duracionTotal = melodia.reduce((s, [, d]) => s + d, 0);
-  intervaloMusica = setTimeout(() => {
-    if (musicaActiva) tocarMelodia();
-  }, duracionTotal * 1000 + 500);
-}
+            reproduciendo = true;
 
-function iniciarMusica() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  if (audioCtx.state === 'suspended') audioCtx.resume();
-  musicaActiva = true;
-  tocarMelodia();
-  btnMusica.textContent = '🔊';
-  btnMusica.title = 'Pausar música';
-}
+            musica.innerHTML =
+                "🔊 Pausar música";
 
-function detenerMusica() {
-  musicaActiva = false;
-  if (intervaloMusica) clearTimeout(intervaloMusica);
-  btnMusica.textContent = '🎵';
-  btnMusica.title = 'Reproducir música';
-}
+        }catch(error){
 
-btnMusica.addEventListener('click', () => {
-  if (musicaActiva) detenerMusica();
-  else iniciarMusica();
+            alert(
+                "No se pudo reproducir la música. " +
+                "Comprueba que exista el archivo musica.mp3."
+            );
+
+        }
+
+    }
+
 });
 
-// Autoiniciar música al primer clic en cualquier parte (política del navegador)
-document.body.addEventListener('click', function autoStart() {
-  if (!musicaActiva) iniciarMusica();
-  document.body.removeEventListener('click', autoStart);
-}, { once: true });
 
-/* ====== EFECTO MÁQUINA DE ESCRIBIR SUAVE EN LA FRASE ====== */
-window.addEventListener('load', () => {
-  // Pequeña animación extra: girasoles del título ya animados por CSS
-  console.log('🌻 Para Jimena 💛 — Hecho con cariño');
+/* =====================================
+   CREAR PÉTALOS
+===================================== */
+
+function crearPetalos(){
+
+    /*
+       Creamos una cantidad moderada para que
+       los teléfonos no tengan demasiado trabajo.
+    */
+
+    for(let i = 0; i < 35; i++){
+
+        const petalo =
+            document.createElement("div");
+
+        petalo.className =
+            "petalo-caida";
+
+
+        petalo.style.left =
+            Math.random() * 100 + "%";
+
+
+        petalo.style.setProperty(
+            "--movimiento",
+            (Math.random() * 240 - 120) + "px"
+        );
+
+
+        petalo.style.animationDuration =
+            (6 + Math.random() * 8) + "s";
+
+
+        petalo.style.animationDelay =
+            (Math.random() * 7) + "s";
+
+
+        petalo.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+
+        petalos.appendChild(petalo);
+
+    }
+
+}
+
+
+/* =====================================
+   COMPARTIR
+===================================== */
+
+compartir.addEventListener("click", async () => {
+
+    const datos = {
+
+        title:
+            "Una sorpresa para Jimena 💛",
+
+        text:
+            "Tengo una pequeña sorpresa para ti... 🌻💛",
+
+        url:
+            window.location.href
+
+    };
+
+
+    /*
+       Teléfonos modernos:
+       abre el menú nativo de compartir.
+    */
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share(datos);
+
+            estadoCompartir.innerHTML =
+                "💛 Sorpresa compartida.";
+
+        }catch(error){
+
+            /*
+               Si la persona cancela compartir,
+               no mostramos ningún error.
+            */
+
+            if(error.name !== "AbortError"){
+
+                estadoCompartir.innerHTML =
+                    "No se pudo compartir.";
+
+            }
+
+        }
+
+        return;
+
+    }
+
+
+    /*
+       Navegadores sin navigator.share:
+       intentamos copiar el enlace.
+    */
+
+    try{
+
+        await navigator.clipboard.writeText(
+            window.location.href
+        );
+
+        estadoCompartir.innerHTML =
+            "💛 Link copiado. Ya puedes enviarlo por WhatsApp.";
+
+    }catch(error){
+
+        /*
+           Última alternativa.
+        */
+
+        const texto =
+            window.location.href;
+
+        window.prompt(
+            "Copia este enlace para compartir la sorpresa:",
+            texto
+        );
+
+    }
+
 });
+
+
+/* =====================================
+   PREVENIR ERROR SI NO EXISTE AUDIO
+===================================== */
+
+audio.addEventListener("error", () => {
+
+    musica.innerHTML =
+        "🎵 Activar música";
+
+});
+
+
+/* =====================================
+   FINAL
+===================================== */
+
 </script>
+
 </body>
 </html>
