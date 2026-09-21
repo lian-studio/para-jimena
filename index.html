@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#f4c542">
 <title>Para Jimena 💛</title>
 
 <style>
@@ -19,1145 +19,688 @@ html,body{
 }
 
 body{
-    overflow:hidden;
-    font-family:Arial, sans-serif;
+    font-family:Georgia, "Times New Roman", serif;
     background:
-        radial-gradient(circle at center, #fffde8 0%, #fff4b0 45%, #f6d66b 100%);
-    color:#654819;
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.9), transparent 25%),
+        radial-gradient(circle at 80% 15%, rgba(255,220,100,.22), transparent 30%),
+        linear-gradient(135deg,#fffdf7,#fff8df,#fffdf9);
+    overflow-x:hidden;
+    color:#5c4624;
 }
 
-/* =========================
-   PANTALLA INICIAL
-========================= */
-
-#inicio{
+/* FONDO */
+.fondo-luz{
     position:fixed;
     inset:0;
-    z-index:1000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:25px;
-
-    background:
-        radial-gradient(circle at 50% 30%, rgba(255,255,255,.95), transparent 35%),
-        linear-gradient(135deg,#fffdf0,#fff0a3,#f5d467);
-
-    transition:
-        opacity 1s ease,
-        visibility 1s ease;
-}
-
-#inicio.oculto{
-    opacity:0;
-    visibility:hidden;
     pointer-events:none;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(255,215,80,.20), transparent 28%),
+        radial-gradient(circle at 10% 85%, rgba(255,228,130,.18), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(255,205,80,.16), transparent 30%);
+    animation:respirar 7s ease-in-out infinite;
 }
 
-.inicio-contenido{
-    width:min(500px,95%);
-    padding:45px 28px;
-    border-radius:35px;
-
-    background:rgba(255,255,255,.45);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    border:1px solid rgba(255,255,255,.7);
-
-    box-shadow:
-        0 30px 80px rgba(130,90,15,.18);
-
-    animation:entrada 1.2s ease;
+@keyframes respirar{
+    0%,100%{opacity:.65;transform:scale(1)}
+    50%{opacity:1;transform:scale(1.04)}
 }
 
-.emoji-flor{
-    font-size:75px;
-    animation:flotar 3s ease-in-out infinite;
-}
-
-.subtitulo{
-    margin-top:15px;
-    font-size:13px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-    color:#a17a25;
-}
-
-h1{
-    margin-top:12px;
-    font-family:Georgia,serif;
-    font-size:clamp(38px,10vw,65px);
-    line-height:.95;
-    font-weight:normal;
-}
-
-h1 span{
-    color:#b17b15;
-    font-style:italic;
-}
-
-.descripcion{
-    margin:22px 0;
-    color:#806a42;
-    font-size:15px;
-}
-
-#abrir{
-    border:none;
-    cursor:pointer;
-
-    padding:16px 30px;
-    border-radius:50px;
-
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-
-    background:linear-gradient(135deg,#e8b735,#b77b0d);
-
-    box-shadow:
-        0 12px 30px rgba(164,110,12,.28);
-
-    transition:.3s;
-}
-
-#abrir:hover{
-    transform:translateY(-3px);
-}
-
-#abrir:active{
-    transform:scale(.96);
-}
-
-/* =========================
-   SORPRESA
-========================= */
-
-#sorpresa{
+/* PÉTALOS */
+.petalo-caido{
     position:fixed;
-    inset:0;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    opacity:0;
-
-    transition:opacity 1.5s ease;
-
-    background:
-        radial-gradient(circle at 50% 20%,rgba(255,255,255,.95),transparent 30%),
-        radial-gradient(circle at 10% 80%,rgba(255,219,76,.4),transparent 35%),
-        radial-gradient(circle at 90% 60%,rgba(255,235,143,.5),transparent 35%),
-        linear-gradient(180deg,#fffde9,#fff0a3,#f4d36a);
-}
-
-#sorpresa.visible{
-    opacity:1;
-}
-
-.contenido{
-    width:min(760px,94%);
-    z-index:10;
-    position:relative;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-/* =========================
-   RAMO
-========================= */
-
-.ramo{
-    position:relative;
-
-    width:min(390px,85vw);
-
-    animation:
-        aparecerRamo 1.8s cubic-bezier(.2,.8,.2,1) forwards,
-        viento 5s ease-in-out 2s infinite;
-
-    filter:drop-shadow(0 20px 25px rgba(100,70,10,.2));
-}
-
-.flor{
-    position:absolute;
-
-    width:85px;
-    height:85px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(circle,
-            #704600 0 14%,
-            #a36a0a 15% 22%,
-            transparent 23%
-        );
-
-    animation:florRespira 4s ease-in-out infinite;
-}
-
-.petalo{
-    position:absolute;
-
-    width:38px;
-    height:62px;
-
-    left:50%;
-    top:50%;
-
-    transform-origin:50% 100%;
-
-    border-radius:50% 50% 45% 45%;
-
-    background:
-        radial-gradient(circle at 35% 25%,
-            #fff9a4,
-            #ffd83d 55%,
-            #d99c0d
-        );
-
-    margin-left:-19px;
-    margin-top:-62px;
-}
-
-/* pétalos */
-.p1{transform:rotate(0deg)}
-.p2{transform:rotate(45deg)}
-.p3{transform:rotate(90deg)}
-.p4{transform:rotate(135deg)}
-.p5{transform:rotate(180deg)}
-.p6{transform:rotate(225deg)}
-.p7{transform:rotate(270deg)}
-.p8{transform:rotate(315deg)}
-
-.flor1{
-    position:relative;
-    left:50%;
-    transform:translateX(-50%);
-}
-
-.flor2{
-    top:75px;
-    left:20%;
-    transform:scale(.75);
-}
-
-.flor3{
-    top:70px;
-    right:18%;
-    transform:scale(.8);
-}
-
-.flor4{
-    top:125px;
-    left:38%;
-    transform:scale(.68);
-}
-
-.flor5{
-    top:135px;
-    right:32%;
-    transform:scale(.65);
-}
-
-/* tallos */
-.tallos{
-    width:100%;
-    height:170px;
-    margin-top:-10px;
-    position:relative;
-}
-
-.tallo{
-    position:absolute;
-    bottom:0;
-    left:50%;
-
-    width:8px;
-    height:180px;
-
-    border-radius:10px;
-
-    background:linear-gradient(
-        90deg,
-        #315c29,
-        #79a94b,
-        #315c29
-    );
-
-    transform-origin:bottom;
-}
-
-.tallo:nth-child(1){
-    transform:rotate(-25deg);
-}
-
-.tallo:nth-child(2){
-    transform:rotate(-10deg);
-}
-
-.tallo:nth-child(3){
-    transform:rotate(10deg);
-}
-
-.tallo:nth-child(4){
-    transform:rotate(25deg);
-}
-
-/* hojas */
-
-.hoja{
-    position:absolute;
-
-    width:65px;
-    height:30px;
-
-    background:linear-gradient(
-        135deg,
-        #3f7634,
-        #86ad51
-    );
-
-    border-radius:100% 0 100% 0;
-}
-
-.hoja1{
-    bottom:50px;
-    left:25%;
-    transform:rotate(-25deg);
-}
-
-.hoja2{
-    bottom:70px;
-    right:22%;
-    transform:rotate(30deg);
-}
-
-.hoja3{
-    bottom:20px;
-    left:40%;
-    transform:rotate(160deg);
-}
-
-/* papel del ramo */
-
-.papel{
-    width:170px;
-    height:100px;
-
-    margin:-30px auto 0;
-
-    background:
-        linear-gradient(135deg,#fff4c7,#ecd994);
-
-    clip-path:polygon(
-        0 0,
-        100% 0,
-        82% 100%,
-        50% 82%,
-        18% 100%
-    );
-
-    position:relative;
-    z-index:5;
-
-    box-shadow:0 10px 20px rgba(100,70,10,.12);
-}
-
-/* =========================
-   TEXTO
-========================= */
-
-.para{
-    margin-top:8px;
-
-    font-size:12px;
-    letter-spacing:5px;
-    text-transform:uppercase;
-
-    color:#a37a20;
-
-    opacity:0;
-    animation:subir .9s ease 1.4s forwards;
-}
-
-.nombre{
-    margin-top:4px;
-
-    font-family:Georgia,serif;
-
-    font-size:clamp(50px,13vw,85px);
-
-    font-weight:normal;
-
-    color:#68491b;
-
-    opacity:0;
-
-    animation:subir .9s ease 1.6s forwards;
-}
-
-.nombre span{
-    font-size:.45em;
-}
-
-/* mensaje */
-
-.mensaje{
-    width:min(680px,100%);
-
-    margin-top:10px;
-
-    padding:22px;
-
-    border-radius:25px;
-
-    background:rgba(255,255,255,.62);
-
-    backdrop-filter:blur(15px);
-    -webkit-backdrop-filter:blur(15px);
-
-    border:1px solid rgba(255,255,255,.8);
-
-    box-shadow:
-        0 18px 55px rgba(100,70,10,.13);
-
-    opacity:0;
-
-    animation:
-        subir 1s ease 2s forwards;
-}
-
-.mensaje p{
-    font-family:Georgia,serif;
-
-    font-size:clamp(19px,4.5vw,25px);
-
-    line-height:1.4;
-
-    color:#61491f;
-}
-
-/* =========================
-   BOTONES
-========================= */
-
-.botones{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-
-    margin-top:17px;
-
-    opacity:0;
-
-    animation:subir .8s ease 2.4s forwards;
-}
-
-.botones button{
-    border:1px solid rgba(255,255,255,.8);
-
-    padding:13px 18px;
-
-    border-radius:50px;
-
-    background:rgba(255,255,255,.65);
-
-    color:#63491d;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    backdrop-filter:blur(10px);
-
-    transition:.25s;
-}
-
-.botones button:hover{
-    transform:translateY(-2px);
-    background:white;
-}
-
-#estadoCompartir{
-    min-height:20px;
-
-    margin-top:7px;
-
-    font-size:12px;
-
-    color:#775b28;
-}
-
-/* =========================
-   PÉTALOS
-========================= */
-
-.petalo-caida{
-    position:absolute;
-
     top:-50px;
-
-    width:12px;
+    width:14px;
     height:20px;
-
-    background:linear-gradient(
-        135deg,
-        #fff59c,
-        #e7aa19
-    );
-
-    border-radius:100% 0 100% 0;
-
-    opacity:.7;
-
-    z-index:3;
-
-    animation:
-        caer linear forwards;
-}
-
-/* =========================
-   DESTELLOS
-========================= */
-
-.destello{
-    position:absolute;
-
-    color:#dcae31;
-
-    font-size:25px;
-
-    z-index:2;
-
-    animation:brillar 3s ease-in-out infinite;
-}
-
-.d1{
-    top:18%;
-    left:12%;
-}
-
-.d2{
-    top:24%;
-    right:13%;
-    animation-delay:1s;
-}
-
-.d3{
-    bottom:20%;
-    right:10%;
-    animation-delay:2s;
-}
-
-.d4{
-    bottom:25%;
-    left:12%;
-    animation-delay:.7s;
-}
-
-/* =========================
-   ANIMACIONES
-========================= */
-
-@keyframes entrada{
-    from{
-        opacity:0;
-        transform:translateY(30px) scale(.96);
-    }
-
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-@keyframes flotar{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-10px) rotate(2deg);
-    }
-}
-
-@keyframes aparecerRamo{
-    from{
-        opacity:0;
-        transform:translateY(100px) scale(.65);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-@keyframes viento{
-    0%,100%{
-        transform:rotate(-1deg);
-    }
-
-    50%{
-        transform:rotate(1.5deg) translateX(5px);
-    }
-}
-
-@keyframes florRespira{
-    0%,100%{
-        filter:brightness(1);
-    }
-
-    50%{
-        filter:brightness(1.08);
-    }
-}
-
-@keyframes subir{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+    border-radius:90% 10% 90% 10%;
+    background:linear-gradient(145deg,#ffd92f,#e9a900);
+    opacity:.75;
+    pointer-events:none;
+    z-index:1;
+    animation:caer linear forwards;
 }
 
 @keyframes caer{
-    from{
-        transform:
-            translateY(-50px)
-            rotate(0deg);
+    0%{
+        transform:translateY(-40px) rotate(0deg) translateX(0);
+        opacity:0;
     }
-
-    to{
-        transform:
-            translateY(110vh)
-            translateX(var(--movimiento))
-            rotate(650deg);
+    10%{opacity:.8}
+    100%{
+        transform:translateY(110vh) rotate(720deg) translateX(100px);
+        opacity:0;
     }
 }
 
-@keyframes brillar{
-    0%,100%{
-        opacity:.2;
-        transform:scale(.7);
-    }
-
-    50%{
-        opacity:1;
-        transform:scale(1.2);
-    }
+/* INTRO CARTA */
+#inicio{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    position:relative;
+    z-index:5;
+    transition:opacity 1s ease, visibility 1s ease;
 }
 
-/* =========================
-   CELULARES
-========================= */
+#inicio.ocultar{
+    opacity:0;
+    visibility:hidden;
+}
+
+.contenedor-carta{
+    width:min(440px,94vw);
+    perspective:1400px;
+    text-align:center;
+}
+
+.frase-inicial{
+    color:#8b6a32;
+    letter-spacing:1px;
+    font-size:14px;
+    margin-bottom:20px;
+    opacity:.85;
+}
+
+/* SOBRE */
+.sobre{
+    width:100%;
+    height:285px;
+    position:relative;
+    transform-style:preserve-3d;
+    filter:drop-shadow(0 22px 30px rgba(120,80,10,.18));
+}
+
+.sobre-cuerpo{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:78%;
+    border-radius:8px 8px 14px 14px;
+    background:
+        linear-gradient(145deg,#fff4bd,#efd16c);
+    overflow:hidden;
+    border:1px solid rgba(150,110,20,.22);
+}
+
+.sobre-cuerpo:before,
+.sobre-cuerpo:after{
+    content:"";
+    position:absolute;
+    width:68%;
+    height:68%;
+    background:rgba(255,255,255,.17);
+}
+
+.sobre-cuerpo:before{
+    left:-18%;
+    bottom:-35%;
+    transform:rotate(43deg);
+}
+
+.sobre-cuerpo:after{
+    right:-18%;
+    bottom:-35%;
+    transform:rotate(-43deg);
+}
+
+.solapa{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:58%;
+    background:
+        linear-gradient(145deg,#ffeaa0,#e9bf46);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top center;
+    transition:transform 1.25s cubic-bezier(.2,.75,.2,1);
+    z-index:6;
+    backface-visibility:hidden;
+    border-top:1px solid rgba(130,90,10,.18);
+}
+
+.sobre.abierta .solapa{
+    transform:rotateX(180deg);
+}
+
+.hoja{
+    position:absolute;
+    left:8%;
+    bottom:15px;
+    width:84%;
+    height:210px;
+    border-radius:6px;
+    background:
+        linear-gradient(rgba(255,255,255,.7),rgba(255,250,229,.98)),
+        repeating-linear-gradient(
+            0deg,
+            rgba(140,100,40,.025) 0,
+            rgba(140,100,40,.025) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+    box-shadow:0 8px 18px rgba(90,60,10,.12);
+    transform:translateY(65px);
+    transition:transform 1.35s cubic-bezier(.18,.8,.2,1);
+    z-index:4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+}
+
+.sobre.abierta .hoja{
+    transform:translateY(-112px);
+}
+
+.hoja-texto{
+    color:#765624;
+    font-size:17px;
+    line-height:1.7;
+    font-style:italic;
+}
+
+.sello{
+    position:absolute;
+    left:50%;
+    top:48%;
+    transform:translate(-50%,-50%);
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle at 32% 28%,#ffe477,#dca51f 68%,#b47b00);
+    box-shadow:
+        0 7px 14px rgba(120,80,0,.27),
+        inset 0 2px 5px rgba(255,255,255,.45);
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:27px;
+    transition:opacity .45s ease,transform .6s ease;
+}
+
+.sobre.abierta .sello{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.4);
+}
+
+.boton{
+    margin-top:25px;
+    border:none;
+    padding:15px 30px;
+    border-radius:999px;
+    cursor:pointer;
+    color:#5c430d;
+    font-size:16px;
+    font-family:inherit;
+    font-weight:bold;
+    background:linear-gradient(135deg,#ffe98a,#f2c72e);
+    box-shadow:0 12px 26px rgba(190,145,20,.25);
+    transition:transform .25s ease,box-shadow .25s ease;
+}
+
+.boton:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 16px 30px rgba(190,145,20,.35);
+}
+
+.boton:active{
+    transform:scale(.97);
+}
+
+/* SORPRESA */
+#sorpresa{
+    min-height:100vh;
+    display:none;
+    opacity:0;
+    padding:45px 18px 55px;
+    position:relative;
+    z-index:3;
+}
+
+#sorpresa.mostrar{
+    display:block;
+    animation:entrada 1.5s ease forwards;
+}
+
+@keyframes entrada{
+    from{opacity:0;transform:translateY(30px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+.caja-sorpresa{
+    width:min(1000px,100%);
+    margin:auto;
+    text-align:center;
+}
+
+.pequeno{
+    color:#aa842c;
+    font-size:13px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.titulo{
+    font-size:clamp(34px,7vw,64px);
+    color:#674918;
+    margin-bottom:9px;
+    text-shadow:0 4px 18px rgba(177,125,10,.15);
+}
+
+.subtitulo{
+    font-size:16px;
+    color:#92733a;
+    margin-bottom:28px;
+}
+
+/* RAMO */
+.ramo-contenedor{
+    width:min(650px,96vw);
+    height:620px;
+    margin:0 auto;
+    position:relative;
+    filter:drop-shadow(0 24px 20px rgba(90,55,0,.12));
+}
+
+.ramo-svg{
+    width:100%;
+    height:100%;
+    overflow:visible;
+}
+
+.flor-mov{
+    transform-origin:center bottom;
+    animation:mecerse 5s ease-in-out infinite;
+}
+
+.flor-mov:nth-child(2){animation-delay:-.8s}
+.flor-mov:nth-child(3){animation-delay:-1.5s}
+.flor-mov:nth-child(4){animation-delay:-2.3s}
+.flor-mov:nth-child(5){animation-delay:-3.1s}
+.flor-mov:nth-child(6){animation-delay:-3.8s}
+
+@keyframes mecerse{
+    0%,100%{transform:rotate(-1deg)}
+    50%{transform:rotate(2deg)}
+}
+
+/* MENSAJE */
+.mensaje{
+    width:min(760px,94vw);
+    margin:5px auto 0;
+    padding:30px 28px;
+    border-radius:24px;
+    background:rgba(255,255,255,.72);
+    border:1px solid rgba(208,164,54,.25);
+    box-shadow:0 20px 50px rgba(120,80,10,.10);
+    backdrop-filter:blur(10px);
+}
+
+.corazon{
+    font-size:34px;
+    margin-bottom:12px;
+    animation:latido 1.8s infinite;
+}
+
+@keyframes latido{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.18)}
+}
+
+.mensaje p{
+    font-size:clamp(19px,3vw,26px);
+    line-height:1.75;
+    color:#634b23;
+}
+
+.firma{
+    margin-top:20px;
+    font-size:15px;
+    color:#ab8534;
+    font-style:italic;
+}
+
+.decoracion{
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(255,214,62,.25),transparent 65%);
+    pointer-events:none;
+}
+
+.decoracion.a{left:-20px;top:120px}
+.decoracion.b{right:-20px;bottom:150px}
 
 @media(max-width:600px){
-
-    .inicio-contenido{
-        padding:35px 20px;
-    }
-
-    .ramo{
-        width:340px;
-        max-width:90vw;
-    }
-
-    .mensaje{
-        padding:17px;
-    }
-
-    .mensaje p{
-        font-size:20px;
-    }
-
-    .botones button{
-        font-size:12px;
-    }
+    #inicio{padding:16px}
+    .sobre{height:255px}
+    .hoja{height:188px}
+    .hoja-texto{font-size:15px}
+    .ramo-contenedor{height:500px}
+    .mensaje{padding:24px 18px}
 }
 
-/* accesibilidad */
+/* SVG TEXTURA */
+svg .petalo-dorado{
+    fill:url(#petalo);
+    stroke:#d79d08;
+    stroke-width:1.2;
+}
 
-@media(prefers-reduced-motion:reduce){
+svg .hoja-verde{
+    fill:url(#verde);
+    stroke:#52701c;
+    stroke-width:1.2;
+}
 
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition:none!important;
-    }
+svg .tallo{
+    fill:none;
+    stroke:url(#talloGrad);
+    stroke-width:8;
+    stroke-linecap:round;
+}
+
+svg .envoltura{
+    fill:url(#papelGrad);
+    stroke:#cda12e;
+    stroke-width:2;
+}
+
+svg .cinta{
+    fill:url(#cintaGrad);
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     PANTALLA INICIAL
-========================= -->
+<div class="fondo-luz"></div>
 
 <section id="inicio">
+    <div class="contenedor-carta">
+        <div class="frase-inicial">He preparado algo pequeño para ti... 🌻</div>
 
-    <div class="inicio-contenido">
+        <div class="sobre" id="sobre">
+            <div class="hoja">
+                <div class="hoja-texto">
+                    Una pequeña sorpresa guarda un detalle pensado especialmente para ti...
+                    <br><br>
+                    💛
+                </div>
+            </div>
 
-        <div class="emoji-flor">🌻</div>
-
-        <div class="subtitulo">
-            Una pequeña sorpresa
+            <div class="sobre-cuerpo"></div>
+            <div class="solapa"></div>
+            <div class="sello">♥</div>
         </div>
 
-        <h1>
-            Tengo una pequeña<br>
-            <span>sorpresa para ti...</span>
-        </h1>
-
-        <p class="descripcion">
-            Ábrela cuando estés lista 💛
-        </p>
-
-        <button id="abrir">
-            Abrir sorpresa 💛
-        </button>
-
+        <button class="boton" id="abrirCarta">Abrir mi carta 💛</button>
     </div>
-
 </section>
-
-
-<!-- =========================
-     SORPRESA
-========================= -->
 
 <section id="sorpresa">
+    <div class="caja-sorpresa">
 
-    <!-- destellos -->
+        <div class="pequeno">Con mucho cariño</div>
+        <h1 class="titulo">Para Jimena 🌻</h1>
+        <div class="subtitulo">Un pequeño detalle convertido en un hermoso momento</div>
 
-    <div class="destello d1">✦</div>
-    <div class="destello d2">✧</div>
-    <div class="destello d3">✦</div>
-    <div class="destello d4">✧</div>
+        <div class="ramo-contenedor">
 
+            <svg class="ramo-svg" viewBox="0 0 650 620" xmlns="http://www.w3.org/2000/svg">
 
-    <!-- aquí aparecen pétalos -->
-    <div id="petalos"></div>
+                <defs>
+                    <radialGradient id="petalo" cx="35%" cy="25%">
+                        <stop offset="0%" stop-color="#fff59d"/>
+                        <stop offset="40%" stop-color="#ffd52f"/>
+                        <stop offset="80%" stop-color="#e7a900"/>
+                        <stop offset="100%" stop-color="#c98600"/>
+                    </radialGradient>
 
+                    <radialGradient id="centro">
+                        <stop offset="0%" stop-color="#f8cd3d"/>
+                        <stop offset="35%" stop-color="#78420b"/>
+                        <stop offset="70%" stop-color="#49290b"/>
+                        <stop offset="100%" stop-color="#251504"/>
+                    </radialGradient>
 
-    <div class="contenido">
+                    <linearGradient id="verde" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#a8c95a"/>
+                        <stop offset="45%" stop-color="#6f9930"/>
+                        <stop offset="100%" stop-color="#3e651a"/>
+                    </linearGradient>
 
-        <!-- RAMO -->
+                    <linearGradient id="talloGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#52791e"/>
+                        <stop offset="100%" stop-color="#2e4f13"/>
+                    </linearGradient>
 
-        <div class="ramo">
+                    <linearGradient id="papelGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#fff4c9"/>
+                        <stop offset="50%" stop-color="#e5c76a"/>
+                        <stop offset="100%" stop-color="#c59d32"/>
+                    </linearGradient>
 
-            <div class="flor flor1">
+                    <linearGradient id="cintaGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#efc52b"/>
+                        <stop offset="50%" stop-color="#ba810e"/>
+                        <stop offset="100%" stop-color="#f1d14e"/>
+                    </linearGradient>
 
-                <div class="petalo p1"></div>
-                <div class="petalo p2"></div>
-                <div class="petalo p3"></div>
-                <div class="petalo p4"></div>
-                <div class="petalo p5"></div>
-                <div class="petalo p6"></div>
-                <div class="petalo p7"></div>
-                <div class="petalo p8"></div>
+                    <filter id="sombra">
+                        <feDropShadow dx="0" dy="7" stdDeviation="7" flood-opacity=".2"/>
+                    </filter>
 
-            </div>
+                    <!-- FLOR PRINCIPAL -->
+                    <g id="flor">
+                        <g class="petalos" filter="url(#sombra)">
+                            <ellipse class="petalo-dorado" cx="0" cy="-47" rx="15" ry="42"/>
+                            <ellipse class="petalo-dorado" cx="23" cy="-41" rx="15" ry="42" transform="rotate(25 23 -41)"/>
+                            <ellipse class="petalo-dorado" cx="40" cy="-23" rx="15" ry="42" transform="rotate(48 40 -23)"/>
+                            <ellipse class="petalo-dorado" cx="47" cy="0" rx="15" ry="42" transform="rotate(72 47 0)"/>
+                            <ellipse class="petalo-dorado" cx="38" cy="25" rx="15" ry="42" transform="rotate(100 38 25)"/>
+                            <ellipse class="petalo-dorado" cx="20" cy="42" rx="15" ry="42" transform="rotate(125 20 42)"/>
+                            <ellipse class="petalo-dorado" cx="0" cy="47" rx="15" ry="42" transform="rotate(180 0 47)"/>
+                            <ellipse class="petalo-dorado" cx="-22" cy="42" rx="15" ry="42" transform="rotate(235 -22 42)"/>
+                            <ellipse class="petalo-dorado" cx="-40" cy="23" rx="15" ry="42" transform="rotate(255 -40 23)"/>
+                            <ellipse class="petalo-dorado" cx="-47" cy="0" rx="15" ry="42" transform="rotate(290 -47 0)"/>
+                            <ellipse class="petalo-dorado" cx="-39" cy="-24" rx="15" ry="42" transform="rotate(315 -39 -24)"/>
+                            <ellipse class="petalo-dorado" cx="-22" cy="-42" rx="15" ry="42" transform="rotate(340 -22 -42)"/>
+                        </g>
 
+                        <circle cx="0" cy="0" r="31" fill="url(#centro)" stroke="#56320a" stroke-width="2"/>
+                        <circle cx="-8" cy="-7" r="3" fill="#c69421"/>
+                        <circle cx="7" cy="-3" r="2.5" fill="#e1aa2a"/>
+                        <circle cx="2" cy="10" r="3" fill="#ad7416"/>
+                        <circle cx="-13" cy="11" r="2" fill="#e5aa25"/>
+                        <circle cx="13" cy="13" r="2.5" fill="#b77d18"/>
+                    </g>
+                </defs>
 
-            <div class="flor flor2">
+                <!-- TALLOS -->
+                <path class="tallo" d="M325 575 C320 470 315 370 320 240"/>
+                <path class="tallo" d="M325 575 C285 455 245 345 210 230"/>
+                <path class="tallo" d="M325 575 C355 465 395 335 430 210"/>
+                <path class="tallo" d="M325 575 C390 480 475 390 505 290"/>
+                <path class="tallo" d="M325 575 C270 500 180 430 125 340"/>
+                <path class="tallo" d="M325 575 C342 470 355 390 355 320"/>
 
-                <div class="petalo p1"></div>
-                <div class="petalo p2"></div>
-                <div class="petalo p3"></div>
-                <div class="petalo p4"></div>
-                <div class="petalo p5"></div>
-                <div class="petalo p6"></div>
-                <div class="petalo p7"></div>
-                <div class="petalo p8"></div>
+                <!-- HOJAS -->
+                <g>
+                    <path class="hoja-verde" d="M270 430 C205 410 177 370 180 333 C224 339 261 364 283 410 Z"/>
+                    <path class="hoja-verde" d="M383 414 C438 386 477 344 470 310 C427 318 395 343 375 391 Z"/>
+                    <path class="hoja-verde" d="M246 487 C188 478 148 447 141 413 C186 414 225 431 263 467 Z"/>
+                    <path class="hoja-verde" d="M405 490 C462 473 505 440 510 403 C466 407 427 426 393 461 Z"/>
+                    <path class="hoja-verde" d="M300 520 C254 522 216 504 195 474 C235 468 271 479 304 504 Z"/>
+                    <path class="hoja-verde" d="M350 522 C400 520 438 500 458 466 C418 465 382 478 347 506 Z"/>
+                </g>
 
-            </div>
+                <!-- FLORES -->
+                <g class="flor-mov" transform="translate(320 215)">
+                    <use href="#flor"/>
+                </g>
 
+                <g class="flor-mov" transform="translate(210 230) scale(.88)">
+                    <use href="#flor"/>
+                </g>
 
-            <div class="flor flor3">
+                <g class="flor-mov" transform="translate(430 210) scale(.9)">
+                    <use href="#flor"/>
+                </g>
 
-                <div class="petalo p1"></div>
-                <div class="petalo p2"></div>
-                <div class="petalo p3"></div>
-                <div class="petalo p4"></div>
-                <div class="petalo p5"></div>
-                <div class="petalo p6"></div>
-                <div class="petalo p7"></div>
-                <div class="petalo p8"></div>
+                <g class="flor-mov" transform="translate(125 340) scale(.72)">
+                    <use href="#flor"/>
+                </g>
 
-            </div>
+                <g class="flor-mov" transform="translate(505 290) scale(.76)">
+                    <use href="#flor"/>
+                </g>
 
+                <g class="flor-mov" transform="translate(355 315) scale(.72)">
+                    <use href="#flor"/>
+                </g>
 
-            <div class="flor flor4">
+                <!-- PAPEL DEL RAMO -->
+                <path class="envoltura" d="M205 470 L445 470 L390 595 L325 552 L258 595 Z" opacity=".96"/>
+                <path d="M218 479 L325 553 L432 479" fill="none" stroke="#fff1bd" stroke-width="4" opacity=".7"/>
 
-                <div class="petalo p1"></div>
-                <div class="petalo p2"></div>
-                <div class="petalo p3"></div>
-                <div class="petalo p4"></div>
-                <div class="petalo p5"></div>
-                <div class="petalo p6"></div>
-                <div class="petalo p7"></div>
-                <div class="petalo p8"></div>
+                <!-- CINTA -->
+                <path class="cinta" d="M289 511 Q325 536 361 511 L354 553 Q325 570 296 553 Z"/>
+                <path class="cinta" d="M309 549 Q276 576 263 599 Q297 587 319 557 Z"/>
+                <path class="cinta" d="M341 549 Q374 576 387 599 Q353 587 331 557 Z"/>
 
-            </div>
-
-
-            <div class="flor flor5">
-
-                <div class="petalo p1"></div>
-                <div class="petalo p2"></div>
-                <div class="petalo p3"></div>
-                <div class="petalo p4"></div>
-                <div class="petalo p5"></div>
-                <div class="petalo p6"></div>
-                <div class="petalo p7"></div>
-                <div class="petalo p8"></div>
-
-            </div>
-
-
-            <!-- tallos -->
-
-            <div class="tallos">
-
-                <div class="tallo"></div>
-                <div class="tallo"></div>
-                <div class="tallo"></div>
-                <div class="tallo"></div>
-
-                <div class="hoja hoja1"></div>
-                <div class="hoja hoja2"></div>
-                <div class="hoja hoja3"></div>
-
-            </div>
-
-            <div class="papel"></div>
-
+                <!-- DESTELLOS -->
+                <g fill="#fff4a8" opacity=".85">
+                    <circle cx="85" cy="190" r="3"/>
+                    <circle cx="548" cy="170" r="4"/>
+                    <circle cx="565" cy="390" r="2.5"/>
+                    <circle cx="95" cy="430" r="4"/>
+                    <circle cx="170" cy="110" r="3"/>
+                    <circle cx="470" cy="115" r="3"/>
+                </g>
+            </svg>
         </div>
-
-
-        <!-- TEXTO -->
-
-        <div class="para">
-            Para ti
-        </div>
-
-        <div class="nombre">
-            Jimena <span>💛</span>
-        </div>
-
 
         <div class="mensaje">
+            <div class="corazon">🌻💛</div>
 
             <p>
-                Este ramito de flores amarillas es para ti, Jimena. 🌻💛 Por si nadie te las dio o simplemente nadie se acordó, quise tener este pequeño detalle contigo. Espero de corazón que te guste y que te saque una bonita sonrisa.
+                Este ramito de flores amarillas es para ti, Jimena. 🌻💛
+                Por si nadie te las dio o simplemente nadie se acordó,
+                quise tener este pequeño detalle contigo.
+                Espero de corazón que te guste y que te saque una bonita sonrisa.
             </p>
 
+            <div class="firma">
+                Un pequeño detalle, pero con mucho cariño ✨
+            </div>
         </div>
-
-
-        <!-- BOTONES -->
-
-        <div class="botones">
-
-            <button id="musica">
-                🎵 Activar música
-            </button>
-
-            <button id="compartir">
-                🔗 Compartir sorpresa 💛
-            </button>
-
-        </div>
-
-        <div id="estadoCompartir"></div>
 
     </div>
-
-
-    <!-- MÚSICA -->
-
-    <audio id="audio" loop preload="auto">
-        <source src="musica.mp3" type="audio/mpeg">
-    </audio>
-
 </section>
 
-
 <script>
-
-/* =====================================
-   ELEMENTOS
-===================================== */
-
+const boton = document.getElementById("abrirCarta");
+const sobre = document.getElementById("sobre");
 const inicio = document.getElementById("inicio");
-const abrir = document.getElementById("abrir");
-
 const sorpresa = document.getElementById("sorpresa");
 
-const audio = document.getElementById("audio");
-const musica = document.getElementById("musica");
+boton.addEventListener("click", () => {
 
-const compartir = document.getElementById("compartir");
-const estadoCompartir =
-    document.getElementById("estadoCompartir");
-
-const petalos =
-    document.getElementById("petalos");
-
-
-let reproduciendo = false;
-
-
-/* =====================================
-   ABRIR SORPRESA
-===================================== */
-
-abrir.addEventListener("click", async () => {
-
-    inicio.classList.add("oculto");
-
-    sorpresa.classList.add("visible");
+    sobre.classList.add("abierta");
+    boton.disabled = true;
+    boton.style.opacity = "0";
+    boton.style.transform = "scale(.8)";
 
     crearPetalos();
 
-    /*
-       Intentamos iniciar la música.
-       Como el botón fue presionado por el usuario,
-       muchos navegadores permiten reproducirla.
-    */
+    setTimeout(() => {
+        inicio.classList.add("ocultar");
 
-    try{
+        setTimeout(() => {
+            inicio.style.display = "none";
+            sorpresa.classList.add("mostrar");
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        },600);
 
-        await audio.play();
-
-        reproduciendo = true;
-
-        musica.innerHTML =
-            "🔊 Pausar música";
-
-    }catch(error){
-
-        reproduciendo = false;
-
-        musica.innerHTML =
-            "🎵 Activar música";
-
-    }
-
+    },1500);
 });
-
-
-/* =====================================
-   MÚSICA
-===================================== */
-
-musica.addEventListener("click", async () => {
-
-    if(reproduciendo){
-
-        audio.pause();
-
-        reproduciendo = false;
-
-        musica.innerHTML =
-            "🎵 Activar música";
-
-    }else{
-
-        try{
-
-            await audio.play();
-
-            reproduciendo = true;
-
-            musica.innerHTML =
-                "🔊 Pausar música";
-
-        }catch(error){
-
-            alert(
-                "No se pudo reproducir la música. " +
-                "Comprueba que exista el archivo musica.mp3."
-            );
-
-        }
-
-    }
-
-});
-
-
-/* =====================================
-   CREAR PÉTALOS
-===================================== */
 
 function crearPetalos(){
 
-    /*
-       Creamos una cantidad moderada para que
-       los teléfonos no tengan demasiado trabajo.
-    */
+    const cantidad = 55;
 
-    for(let i = 0; i < 35; i++){
+    for(let i=0;i<cantidad;i++){
 
-        const petalo =
-            document.createElement("div");
+        const petalo = document.createElement("div");
+        petalo.className = "petalo-caido";
 
-        petalo.className =
-            "petalo-caida";
+        const izquierda = Math.random()*100;
+        const tamano = 8 + Math.random()*10;
+        const duracion = 5 + Math.random()*7;
+        const retraso = Math.random()*4;
 
+        petalo.style.left = izquierda + "vw";
+        petalo.style.width = tamano + "px";
+        petalo.style.height = (tamano*1.35) + "px";
+        petalo.style.animationDuration = duracion + "s";
+        petalo.style.animationDelay = retraso + "s";
 
-        petalo.style.left =
-            Math.random() * 100 + "%";
+        document.body.appendChild(petalo);
 
-
-        petalo.style.setProperty(
-            "--movimiento",
-            (Math.random() * 240 - 120) + "px"
-        );
-
-
-        petalo.style.animationDuration =
-            (6 + Math.random() * 8) + "s";
-
-
-        petalo.style.animationDelay =
-            (Math.random() * 7) + "s";
-
-
-        petalo.style.transform =
-            `rotate(${Math.random()*360}deg)`;
-
-
-        petalos.appendChild(petalo);
-
+        setTimeout(()=>{
+            petalo.remove();
+        },(duracion+retraso)*1000+1000);
     }
-
 }
 
+/* MÁS BRILLOS DURANTE LA SORPRESA */
+function crearBrillo(){
 
-/* =====================================
-   COMPARTIR
-===================================== */
+    const brillo = document.createElement("div");
 
-compartir.addEventListener("click", async () => {
+    brillo.style.position="fixed";
+    brillo.style.width="5px";
+    brillo.style.height="5px";
+    brillo.style.borderRadius="50%";
+    brillo.style.background="#fff7b0";
+    brillo.style.boxShadow="0 0 12px 5px rgba(255,220,80,.45)";
+    brillo.style.left=(10+Math.random()*80)+"vw";
+    brillo.style.top=(10+Math.random()*75)+"vh";
+    brillo.style.pointerEvents="none";
+    brillo.style.zIndex="2";
 
-    const datos = {
+    document.body.appendChild(brillo);
 
-        title:
-            "Una sorpresa para Jimena 💛",
-
-        text:
-            "Tengo una pequeña sorpresa para ti... 🌻💛",
-
-        url:
-            window.location.href
-
-    };
-
-
-    /*
-       Teléfonos modernos:
-       abre el menú nativo de compartir.
-    */
-
-    if(navigator.share){
-
-        try{
-
-            await navigator.share(datos);
-
-            estadoCompartir.innerHTML =
-                "💛 Sorpresa compartida.";
-
-        }catch(error){
-
-            /*
-               Si la persona cancela compartir,
-               no mostramos ningún error.
-            */
-
-            if(error.name !== "AbortError"){
-
-                estadoCompartir.innerHTML =
-                    "No se pudo compartir.";
-
-            }
-
+    brillo.animate(
+        [
+            {opacity:0,transform:"scale(.2)"},
+            {opacity:1,transform:"scale(1.5)"},
+            {opacity:0,transform:"scale(.1)"}
+        ],
+        {
+            duration:1800+Math.random()*1500,
+            easing:"ease-in-out"
         }
+    ).onfinish=()=>brillo.remove();
+}
 
-        return;
-
+setInterval(()=>{
+    if(sorpresa.classList.contains("mostrar")){
+        crearBrillo();
     }
-
-
-    /*
-       Navegadores sin navigator.share:
-       intentamos copiar el enlace.
-    */
-
-    try{
-
-        await navigator.clipboard.writeText(
-            window.location.href
-        );
-
-        estadoCompartir.innerHTML =
-            "💛 Link copiado. Ya puedes enviarlo por WhatsApp.";
-
-    }catch(error){
-
-        /*
-           Última alternativa.
-        */
-
-        const texto =
-            window.location.href;
-
-        window.prompt(
-            "Copia este enlace para compartir la sorpresa:",
-            texto
-        );
-
-    }
-
-});
-
-
-/* =====================================
-   PREVENIR ERROR SI NO EXISTE AUDIO
-===================================== */
-
-audio.addEventListener("error", () => {
-
-    musica.innerHTML =
-        "🎵 Activar música";
-
-});
-
-
-/* =====================================
-   FINAL
-===================================== */
-
+},700);
 </script>
 
 </body>
