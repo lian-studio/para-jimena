@@ -82,6 +82,7 @@
       border-radius: 24px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.08);
       border: 1px solid #ffe680;
+      animation: floatCard 3s ease-in-out infinite alternate;
     }
 
     .title-name {
@@ -114,11 +115,16 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       position: relative;
       background: #fdfdfd;
+      transition: transform 0.3s ease;
+    }
+
+    .img-wrapper:hover {
+      transform: translateY(-5px);
     }
 
     .img-wrapper img {
       width: 100%;
-      height: 180px;
+      height: 190px;
       object-fit: cover;
       display: block;
     }
@@ -134,19 +140,19 @@
     .phrase-box {
       background: #fffdf0;
       border-left: 4px solid #ffd700;
-      padding: 18px 15px;
+      padding: 20px 18px;
       border-radius: 8px;
       margin-top: 10px;
     }
 
     .phrase-text {
-      font-size: 0.98rem;
+      font-size: 1rem;
       line-height: 1.6;
       color: #555;
       font-style: italic;
     }
 
-    /* Pétalos cayendo */
+    /* Animación de pétalos cayendo */
     .petal {
       position: fixed;
       top: -10%;
@@ -160,6 +166,11 @@
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
+    }
+
+    @keyframes floatCard {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
     }
 
     @keyframes fall {
@@ -181,48 +192,44 @@
 </head>
 <body>
 
-  <!-- Sobre inicial -->
   <div id="envelopeScreen" class="envelope-screen" onclick="openSurprise()">
     <div class="envelope-card">
       <div class="envelope-icon">✉️</div>
       <div class="envelope-title">Para: Jimena</div>
-      <div class="tap-text">Tienes una sorpresa especial.<br><strong>Haz clic aquí para abrir</strong></div>
+      <div class="tap-text">Tienes un detalle especial.<br><strong>Haz clic aquí para abrir</strong></div>
     </div>
   </div>
 
-  <!-- Contenido de la Sorpresa -->
   <div id="surpriseScreen" class="surprise-screen">
     <div class="surprise-card">
       <h1 class="title-name">Para Jimena</h1>
-      <p class="subtitle">21 de Septiembre</p>
+      <p class="subtitle">21 de Septiembre 🌼</p>
 
       <div class="gallery">
         <div class="img-wrapper">
-          <!-- Imagen de Flores Amarillas Reales -->
-          <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop" alt="Flores Amarillas">
-          <div class="img-caption">Flores Amarillas</div>
+          <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?q=80&w=800&auto=format&fit=crop" alt="Ramo de Flores Amarillas">
+          <div class="img-caption">Flores Amarillas 🌻</div>
         </div>
         <div class="img-wrapper">
-          <!-- Imagen de Oso de Peluche -->
           <img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?q=80&w=800&auto=format&fit=crop" alt="Oso de Peluche">
-          <div class="img-caption">Un Abrazo Dulce</div>
+          <div class="img-caption">Un Abrazo Dulce 🧸</div>
         </div>
       </div>
 
       <div class="phrase-box">
         <p class="phrase-text">
-          "El 21 de septiembre es un día perfecto para recordar a las personas que aportan luz a nuestro camino. Que estas flores amarillas te traigan un motivo para sonreír hoy y siempre."
+          Este ramito de flores amarillas es para ti, Jimena. 🌻💛<br><br>
+          Por si nadie te las dio o simplemente nadie se acordó, quise tener este pequeño detalle contigo. Espero de corazón que te guste y que te saque una bonita sonrisa.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- Audio Romántico de fondo -->
   <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
 
   <script>
     function openSurprise() {
-      // Ocultar sobre
+      // Ocultar sobre con animación
       const envelope = document.getElementById('envelopeScreen');
       envelope.style.opacity = '0';
       
@@ -233,17 +240,17 @@
         const surprise = document.getElementById('surpriseScreen');
         surprise.classList.add('visible');
 
-        // Reproducir música
+        // Reproducir música romántica
         const music = document.getElementById('bgMusic');
         music.play().catch(e => console.log("Audio play blocked", e));
 
-        // Iniciar lluvia de flores/pétalos
+        // Iniciar animación de flores y pétalos flotantes
         createPetals();
       }, 500);
     }
 
     function createPetals() {
-      const symbols = ['🌻', '🟡', '✨', '🌼'];
+      const symbols = ['🌻', '🟡', '✨', '🌼', '🧸'];
       for (let i = 0; i < 25; i++) {
         setTimeout(() => {
           const petal = document.createElement('div');
@@ -258,7 +265,7 @@
         }, i * 300);
       }
       
-      // Mantener efecto continuo
+      // Animación continua
       setInterval(() => {
         const petal = document.createElement('div');
         petal.className = 'petal';
