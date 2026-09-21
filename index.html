@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Una sorpresa de Flores Amarillas para Jimena 💛</title>
+  
+  <!-- Vista previa al compartir por WhatsApp -->
+  <meta property="og:title" content="¡Jimena, tienes una carta sorpresa! 🌻">
+  <meta property="og:description" content="Toca el sobre para abrir tu regalo de flores amarillas.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=800">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: linear-gradient(135deg, #fff9e6 0%, #ffecb3 100%);
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .card-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(212, 160, 23, 0.2);
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      padding: 35px 25px;
+      border: 2px solid #ffe082;
+      position: relative;
+    }
+    
+    /* Animación del sobre */
+    .envelope-icon {
+      font-size: 90px;
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.4s ease, filter 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    .envelope-icon:hover {
+      transform: scale(1.15) rotate(-3deg);
+      filter: drop-shadow(0 10px 15px rgba(255, 179, 0, 0.4));
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    h1 {
+      color: #b78103;
+      font-size: 26px;
+      margin-top: 15px;
+      font-weight: 700;
+    }
+    p.subtitle {
+      color: #7a6211;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .open-btn {
+      margin-top: 25px;
+      background: linear-gradient(45deg, #ffb300, #ffa000);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 17px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 160, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+    .open-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 160, 0, 0.5);
+    }
+
+    /* Vista de la Sorpresa */
+    #surprise-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #surprise-content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .flower-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      margin: 20px 0;
+      border: 3px solid #fff;
+    }
+
+    .special-message {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5d4037;
+      background: #fffde7;
+      padding: 20px;
+      border-radius: 16px;
+      border-left: 5px solid #ffca28;
+      margin-bottom: 20px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- Pantalla Inicial con el Sobre -->
+    <div id="envelope-screen">
+      <div class="envelope-icon" onclick="revealSurprise()">💌</div>
+      <h1>¡Para Jimena! ✨</h1>
+      <p class="subtitle">Tienes un regalo especial esperándote dentro...</p>
+      <button class="open-btn" onclick="revealSurprise()">Abrir Carta 🌻</button>
+    </div>
+
+    <!-- Pantalla con la Sorpresa Abierta -->
+    <div id="surprise-content">
+      <h1 style="color: #d48806;">🌻 ¡Flores Amarillas para ti, Jimena! 💛</h1>
+      
+      <!-- Fotografía Realista de Flores Amarillas -->
+      <img src="https://images.unsplash.com/photo-1591886960571-74d43a9d4166?q=80&w=800" 
+           alt="Flores Amarillas para Jimena" 
+           class="flower-image">
+
+      <div class="special-message">
+        <p><strong>Querida Jimena,</strong></p>
+        <p>Estas flores amarillas son para iluminar tu día y recordarte lo especial e importante que eres. ¡Que siempre sonrías y brilles con esa luz única! 🌼✨</p>
+      </div>
+
+      <p style="color: #8c6d1f; font-size: 14px; margin-bottom: 8px;">🎵 Escucha tu canción especial:</p>
+      <!-- Reproductor de audio -->
+      <audio id="bg-music" controls loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el reproductor de audio.
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    function revealSurprise() {
+      const envelopeScreen = document.getElementById('envelope-screen');
+      const surpriseContent = document.getElementById('surprise-content');
+      const audio = document.getElementById('bg-music');
+
+      envelopeScreen.style.display = 'none';
+      surpriseContent.classList.add('show');
+
+      // Intenta reproducir la música al abrir la sorpresa
+      audio.play().catch(() => {
+        console.log("El navegador requiere interacción previa para reproducir audio.");
+      });
+    }
+  </script>
+</body>
+</html>
