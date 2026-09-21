@@ -3,30 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Feliz 21! Un detalle de Flores Amarillas y Peluche 💛🧸</title>
-
+  <title>Una sorpresa para Jimena ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background: linear-gradient(135deg, #fffde7 0%, #ffe082 100%);
-      font-family: 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff9e6 0%, #ffeedd 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      overflow: hidden;
-      position: relative;
+      overflow-x: hidden;
+      color: #4a4a4a;
     }
 
-    /* Animación continua de lluvia de flores y peluches */
-    .falling-item {
-      position: absolute;
-      top: -50px;
-      font-size: 26px;
+    /* Pantalla del Sobre */
+    .envelope-screen {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.5s ease;
+      z-index: 10;
+    }
+
+    .envelope-screen:hover {
+      transform: scale(1.05);
+    }
+
+    .envelope-card {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(230, 180, 0, 0.2);
+      border: 2px solid #ffd700;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .envelope-icon {
+      font-size: 65px;
+      margin-bottom: 15px;
+      animation: pulse 1.8s infinite;
+    }
+
+    .envelope-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #d4a017;
+      margin-bottom: 8px;
+    }
+
+    .tap-text {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* Pantalla de la Sorpresa */
+    .surprise-screen {
+      display: none;
+      opacity: 0;
+      max-width: 500px;
+      width: 90%;
+      margin: 20px auto;
+      text-align: center;
+      transition: opacity 1s ease;
+      z-index: 5;
+    }
+
+    .surprise-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 30px 25px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border: 1px solid #ffe680;
+    }
+
+    .title-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      color: #d4a017;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b38f00;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .img-wrapper {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      position: relative;
+      background: #fdfdfd;
+    }
+
+    .img-wrapper img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-caption {
+      font-size: 0.75rem;
+      padding: 6px;
+      background: #fff;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .phrase-box {
+      background: #fffdf0;
+      border-left: 4px solid #ffd700;
+      padding: 18px 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .phrase-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: #555;
+      font-style: italic;
+    }
+
+    /* Pétalos cayendo */
+    .petal {
+      position: fixed;
+      top: -10%;
+      font-size: 20px;
       user-select: none;
+      z-index: 1;
       pointer-events: none;
       animation: fall linear infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     @keyframes fall {
@@ -36,172 +169,107 @@
       }
       100% {
         transform: translateY(105vh) rotate(360deg);
-        opacity: 0.2;
+        opacity: 0;
       }
     }
 
-    /* Tarjeta del sobre */
-    .card-container {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(212, 160, 23, 0.3);
-      max-width: 450px;
-      width: 100%;
-      text-align: center;
-      padding: 35px 25px;
-      border: 2px solid #ffca28;
-      z-index: 10;
-    }
-
-    .envelope-icon {
-      font-size: 85px;
-      cursor: pointer;
-      display: inline-block;
-      transition: transform 0.3s ease;
-      animation: bounce 2s infinite;
-    }
-
-    .envelope-icon:hover {
-      transform: scale(1.15) rotate(-5deg);
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    h1 {
-      color: #b78103;
-      font-size: 24px;
-      margin-top: 15px;
-    }
-
-    p.subtitle {
-      color: #7a6211;
-      font-size: 15px;
-      margin-top: 8px;
-    }
-
-    .btn-open {
-      margin-top: 20px;
-      background: linear-gradient(45deg, #ffb300, #ffa000);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 160, 0, 0.4);
-      transition: transform 0.2s ease;
-    }
-
-    .btn-open:hover {
-      transform: scale(1.05);
-    }
-
-    /* Sorpresa desplegada */
-    #surprise-content {
-      display: none;
-      animation: fadeIn 1s forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .teddy-bouquet-box {
-      font-size: 75px;
-      margin: 15px 0;
-      animation: pulse 1.5s infinite alternate;
-    }
-
-    @keyframes pulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.08); }
-    }
-
-    .neutral-message {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #4e342e;
-      background: #fffde7;
-      padding: 18px;
-      border-radius: 16px;
-      border-left: 4px solid #ffc107;
-      margin: 15px 0;
-      text-align: left;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 15px;
-      border-radius: 20px;
+    .visible {
+      display: block !important;
+      opacity: 1 !important;
     }
   </style>
 </head>
 <body>
 
-  <!-- Contenedor para la lluvia animada -->
-  <div id="rain-container"></div>
-
-  <div class="card-container">
-    <!-- Pantalla del Sobre -->
-    <div id="envelope-screen">
-      <div class="envelope-icon" onclick="openSurprise()">💌</div>
-      <h1>¡Un detalle para este 21! ✨</h1>
-      <p class="subtitle">Toca el sobre para descubrir tu sorpresa...</p>
-      <button class="btn-open" onclick="openSurprise()">Abrir Sobre 💛</button>
-    </div>
-
-    <!-- Pantalla de la Sorpresa -->
-    <div id="surprise-content">
-      <h1>🌻 ¡Feliz 21 de Flores Amarillas! 🧸</h1>
-
-      <div class="teddy-bouquet-box">
-        🧸💐🌻
-      </div>
-
-      <div class="neutral-message">
-        <p><strong>¡Un detalle especial para ti!</strong></p>
-        <p>Porque cada 21 es la oportunidad perfecta para regalar luz, cariño y momentos bonitos. Que este pequeño oso de peluche y estas flores amarillas iluminen tu día y te saquen una gran sonrisa. ✨💛</p>
-      </div>
-
-      <p style="color: #8c6d1f; font-size: 14px;">🎵 Canción especial de fondo:</p>
-      <audio id="bg-music" controls loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Tu navegador no soporta el reproductor de audio.
-      </audio>
+  <!-- Sobre inicial -->
+  <div id="envelopeScreen" class="envelope-screen" onclick="openSurprise()">
+    <div class="envelope-card">
+      <div class="envelope-icon">✉️</div>
+      <div class="envelope-title">Para: Jimena</div>
+      <div class="tap-text">Tienes una sorpresa especial.<br><strong>Haz clic aquí para abrir</strong></div>
     </div>
   </div>
 
-  <script>
-    // Generador de lluvia de Flores Amarillas y Peluches
-    const rainContainer = document.getElementById('rain-container');
-    const items = ['🌻', '🌼', '🧸', '💛', '✨'];
+  <!-- Contenido de la Sorpresa -->
+  <div id="surpriseScreen" class="surprise-screen">
+    <div class="surprise-card">
+      <h1 class="title-name">Para Jimena</h1>
+      <p class="subtitle">21 de Septiembre</p>
 
-    for (let i = 0; i < 30; i++) {
-      const item = document.createElement('div');
-      item.classList.add('falling-item');
-      item.innerText = items[Math.floor(Math.random() * items.length)];
-      item.style.left = Math.random() * 100 + 'vw';
-      item.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      item.style.animationDelay = Math.random() * 5 + 's';
-      item.style.fontSize = (Math.random() * 15 + 20) + 'px';
-      rainContainer.appendChild(item);
+      <div class="gallery">
+        <div class="img-wrapper">
+          <!-- Imagen de Flores Amarillas Reales -->
+          <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?q=80&w=800&auto=format&fit=crop" alt="Flores Amarillas">
+          <div class="img-caption">Flores Amarillas</div>
+        </div>
+        <div class="img-wrapper">
+          <!-- Imagen de Oso de Peluche -->
+          <img src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?q=80&w=800&auto=format&fit=crop" alt="Oso de Peluche">
+          <div class="img-caption">Un Abrazo Dulce</div>
+        </div>
+      </div>
+
+      <div class="phrase-box">
+        <p class="phrase-text">
+          "El 21 de septiembre es un día perfecto para recordar a las personas que aportan luz a nuestro camino. Que estas flores amarillas te traigan un motivo para sonreír hoy y siempre."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Romántico de fondo -->
+  <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+
+  <script>
+    function openSurprise() {
+      // Ocultar sobre
+      const envelope = document.getElementById('envelopeScreen');
+      envelope.style.opacity = '0';
+      
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        
+        // Mostrar sorpresa
+        const surprise = document.getElementById('surpriseScreen');
+        surprise.classList.add('visible');
+
+        // Reproducir música
+        const music = document.getElementById('bgMusic');
+        music.play().catch(e => console.log("Audio play blocked", e));
+
+        // Iniciar lluvia de flores/pétalos
+        createPetals();
+      }, 500);
     }
 
-    function openSurprise() {
-      document.getElementById('envelope-screen').style.display = 'none';
-      const surprise = document.getElementById('surprise-content');
-      surprise.style.display = 'block';
+    function createPetals() {
+      const symbols = ['🌻', '🟡', '✨', '🌼'];
+      for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+          const petal = document.createElement('div');
+          petal.className = 'petal';
+          petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+          petal.style.left = Math.random() * 100 + 'vw';
+          petal.style.animationDuration = (Math.random() * 3 + 3) + 's';
+          petal.style.fontSize = (Math.random() * 10 + 15) + 'px';
+          document.body.appendChild(petal);
 
-      const audio = document.getElementById('bg-music');
-      audio.play().catch(() => {
-        console.log("El navegador requiere interacción previa.");
-      });
+          setTimeout(() => petal.remove(), 6000);
+        }, i * 300);
+      }
+      
+      // Mantener efecto continuo
+      setInterval(() => {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        petal.style.fontSize = (Math.random() * 10 + 15) + 'px';
+        document.body.appendChild(petal);
+
+        setTimeout(() => petal.remove(), 6000);
+      }, 400);
     }
   </script>
 </body>
